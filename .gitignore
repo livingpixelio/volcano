@@ -3,4 +3,4 @@ node_modules/
 www/_fresh
 www/.env
 www/.env.*
-www/content/obsidian
+.obsidian/
