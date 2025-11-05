@@ -1,5 +1,2 @@
-import { unified } from "unified";
-
-export const main = (): string => {
-  return unified.name;
-};
+export type { Vault, FileMeta } from "./Vault.ts";
+export { openVault } from "./Vault.ts";

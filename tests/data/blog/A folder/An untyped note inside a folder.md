@@ -1,0 +1,1 @@
+A note with no type or frontmatter
