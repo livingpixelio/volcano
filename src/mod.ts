@@ -1,6 +1,6 @@
 import { createCacheAdapterMemory } from "./adapters/CacheAdaptorMemory.ts";
 import { buildFullFileList, FileEntry, openFile } from "./disk/deno.ts";
-import { getChecksum } from "./parsers/index.ts";
+import { getChecksum, getFrontmatter, parseMd } from "./parsers/index.ts";
 
 export type { MdastNodeTy } from "./parsers/index.ts";
 export type { Root as MdastRootTy } from "./parsers/markdown/MdastNode.ts";
@@ -18,7 +18,7 @@ export interface Vault {
 export interface CacheAdapter {
   listAll: () => Promise<Array<[string, string]>>;
   list: (type: string) => Promise<string[]>;
-  get: <ModelTy>(type: string, key: string) => Promise<ModelTy>;
+  get: <ModelTy>(type: string, key: string) => Promise<ModelTy | null>;
   set: <ModelTy>(type: string, key: string, value: ModelTy) => Promise<void>;
   deleteAll: (type: string) => Promise<void>;
   delete: (type: string, key: string) => Promise<void>;
@@ -49,10 +49,31 @@ export const openVault = async ({
   }
 
   const store = cacheAdapter || createCacheAdapterMemory();
-  const keysToRemove = await store.listAll();
+  const keysToRemove = await store.list("_files");
+
   for (const entry of fileList) {
     const data = await openFile(path, entry);
     const checksum = await getChecksum(data);
+    const existing = await store.get("_files", entry.defaultSlug);
+
+    if (entry.extension === ".md") {
+      const decoder = new TextDecoder("utf-8");
+      const text = decoder.decode(data);
+      // @TODO: avoid full parse on the initial run
+      const content = parseMd(text);
+      const frontmatter = getFrontmatter(content);
+      const noteType = frontmatter["type"] || "*";
+      const noteSlug = frontmatter["slug"] || entry.defaultSlug;
+      await store.set(noteType, noteSlug, {
+        meta: {
+          slug: noteSlug,
+          type: noteType,
+          checksum,
+        },
+        frontmatter,
+        content,
+      });
+    }
   }
 
   // create two lookup tables: one maps type-slugs (use * as sentinel for no type) to:

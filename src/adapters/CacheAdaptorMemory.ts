@@ -24,14 +24,12 @@ class CacheAdapterMemory implements CacheAdapter {
     return allKeys.filter((key) => key[0] === type).map((key) => key[1]);
   }
 
-  public get<Ty>(type: string, key: string): Promise<Ty> {
+  public get<Ty>(type: string, key: string): Promise<Ty | null> {
     const result: Ty = this.cache[`${type}:${key}`];
     if (typeof result !== "undefined") {
       return Promise.resolve(result);
     } else {
-      return Promise.reject(
-        new Error(`type ${type} key ${key} not found in memory cache`)
-      );
+      return Promise.resolve(null);
     }
   }
 
