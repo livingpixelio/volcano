@@ -56,3 +56,12 @@ export const buildFullFileList = (
 
   return buildListForDir(rootDirPath);
 };
+
+export const openFile = (rootDirPath: string, fileEntry: FileEntry) =>
+  Deno.readFile(
+    path.join(
+      rootDirPath,
+      fileEntry.path,
+      `${fileEntry.basename}${fileEntry.extension}`
+    )
+  );
