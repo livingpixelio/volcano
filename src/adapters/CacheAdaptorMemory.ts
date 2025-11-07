@@ -1,4 +1,4 @@
-import { CacheAdapter } from "../mod.ts";
+import { CacheAdapter } from "../types.ts";
 
 class CacheAdapterMemory implements CacheAdapter {
   // deno-lint-ignore no-explicit-any
@@ -22,6 +22,13 @@ class CacheAdapterMemory implements CacheAdapter {
   public async list(type: string): Promise<string[]> {
     const allKeys = await this.listAll();
     return allKeys.filter((key) => key[0] === type).map((key) => key[1]);
+  }
+
+  public async listValues<Ty>(type: string) {
+    const keys = await this.list(type);
+    return Promise.all(
+      keys.map((key) => this.get<Ty>(type, key) as Promise<Ty>)
+    );
   }
 
   public get<Ty>(type: string, key: string): Promise<Ty | null> {

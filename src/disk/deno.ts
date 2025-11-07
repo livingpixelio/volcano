@@ -7,14 +7,8 @@ export interface FileEntry {
   path: string;
   basename: string;
   extension: string;
+  title: string;
   defaultSlug: string;
-  // checksum: string;
-  // slug: string;
-  // type?: string;
-  // // any is necessary here because we don't know the type of the file;
-  // // or indeed if it has one
-  // // deno-lint-ignore no-explicit-any
-  // frontmatter: Record<string, any>;
 }
 
 export const buildFullFileList = (
@@ -40,6 +34,7 @@ export const buildFullFileList = (
           extension,
           defaultSlug:
             extension === ".md" ? slugBase : `${slugBase}${extension}`,
+          title: extension === ".md" ? basename : `${basename}${extension}`,
         };
         entries = [...entries, fileEntry];
       } else if (
