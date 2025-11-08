@@ -5,9 +5,6 @@ import { getChecksum, getFrontmatter, parseMd } from "./parsers/index.ts";
 
 import type { FileMeta, Vault, OpenVaultOptions } from "./types.ts";
 
-export type { MdastNodeTy } from "./parsers/index.ts";
-export type { Root as MdastRootTy } from "./parsers/markdown/MdastNode.ts";
-
 const FILE_TYPE = "_files";
 const ATTACHMENT_TYPE = "_attachments";
 const UNTYPED_TYPE = "_untyped";
