@@ -1,6 +1,7 @@
 import * as z from "@zod/zod";
 import { Root } from "./parsers/markdown/MdastNode.ts";
 import { FileEntry } from "./disk/deno.ts";
+import { MdastNodeTy } from "./parsers/index.ts";
 
 /**
  * VAULTS
@@ -93,6 +94,13 @@ export type Frontmatter = Record<string, any>;
 
 export type { MdastNodeTy } from "./parsers/index.ts";
 export type { Root as MdastRootTy } from "./parsers/markdown/MdastNode.ts";
+
+export type Transformer = (node: MdastNodeTy.MdastNode) => {
+  key: string;
+  transform: (
+    getDataFromTitle: (title: string) => FileMeta
+  ) => Promise<MdastNodeTy.MdastNode>;
+};
 
 /**
  * ATTACHMENTS
