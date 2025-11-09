@@ -1,5 +1,6 @@
 import * as z from "@zod/zod";
 import { Root } from "./parsers/markdown/MdastNode.ts";
+import { FileEntry } from "./disk/deno.ts";
 
 /**
  * VAULTS
@@ -13,9 +14,9 @@ export interface Vault {
     schema: z.ZodObject<Record<string, z.Schema>>
   ) => Model<FrontmatterTy>;
 
-  getContent: (slug: string) => Promise<Root>;
+  getContent: (slug: string) => Promise<Root | null>;
 
-  getText: (slug: string) => Promise<string>;
+  getText: (slug: string) => Promise<string | null>;
 
   /**
    * Get original file contents
@@ -44,6 +45,7 @@ export interface FileMeta {
   title: string;
   type: string;
   checksum: string;
+  file: FileEntry;
 }
 
 /**
@@ -65,9 +67,9 @@ export interface Model<FrontmatterTy extends Frontmatter> {
     frontmatter: FrontmatterTy;
   } | null>;
 
-  getContent: (slug: string) => Promise<Root>;
+  getContent: (slug: string) => Promise<Root | null>;
 
-  getText: (slug: string) => Promise<string>;
+  getText: (slug: string) => Promise<string | null>;
 
   /**
   * Get original file contents

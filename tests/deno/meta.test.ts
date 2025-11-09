@@ -52,3 +52,13 @@ Deno.test("supply the same cache and run it twice", async () => {
   const final = await cache.listAll();
   assertEquals(init.length, final.length);
 });
+
+Deno.test("return content when single note is requested", async () => {
+  const vault = await openVault({
+    path: path.join(Deno.cwd(), "tests/data/blog"),
+  });
+  const result = await vault.getText(
+    "a-post-with-special-characters-in-the-title"
+  );
+  assertEquals(result, "The content");
+});

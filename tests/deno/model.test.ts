@@ -39,6 +39,8 @@ Deno.test("return content when single note is requested", async () => {
     path: path.join(Deno.cwd(), "tests/data/blog"),
   });
   const post = vault.createModel("Post", schema);
-  const result = await post.get("a-custom-post-slug");
-  assertEquals(result?.title, "A post");
+  const result = await post.getText(
+    "a-post-with-special-characters-in-the-title"
+  );
+  assertEquals(result, "The content");
 });

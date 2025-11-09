@@ -1,9 +1,19 @@
 import { createCacheAdapterMemory } from "./adapters/CacheAdaptorMemory.ts";
 import { buildFullFileList, FileEntry, openFile } from "./disk/deno.ts";
 import { makeModel } from "./model.ts";
-import { getChecksum, getFrontmatter, parseMd } from "./parsers/index.ts";
+import {
+  getChecksum,
+  getFrontmatter,
+  getPlainText,
+  parseMd,
+} from "./parsers/index.ts";
 
-import type { FileMeta, Vault, OpenVaultOptions } from "./types.ts";
+import type {
+  FileMeta,
+  Vault,
+  OpenVaultOptions,
+  Frontmatter,
+} from "./types.ts";
 
 const FILE_TYPE = "_files";
 const ATTACHMENT_TYPE = "_attachments";
@@ -51,22 +61,29 @@ export const openVault = async (options: OpenVaultOptions): Promise<Vault> => {
         type: noteType,
         checksum,
         title: entry.title,
+        file: entry,
       });
-      await store.set(noteType, noteSlug, {
-        meta: {
-          slug: noteSlug,
-          type: noteType,
-          checksum,
-          title: entry.title,
-        },
-        frontmatter,
-      });
+      await store.set<{ meta: FileMeta; frontmatter: Frontmatter }>(
+        noteType,
+        noteSlug,
+        {
+          meta: {
+            slug: noteSlug,
+            type: noteType,
+            checksum,
+            title: entry.title,
+            file: entry,
+          },
+          frontmatter,
+        }
+      );
     } else {
       await store.set<FileMeta>(FILE_TYPE, entry.defaultSlug, {
         slug: entry.defaultSlug,
         type: ATTACHMENT_TYPE,
         checksum,
         title: entry.title,
+        file: entry,
       });
     }
   }
@@ -78,10 +95,32 @@ export const openVault = async (options: OpenVaultOptions): Promise<Vault> => {
     await store.delete(FILE_TYPE, keyToRemove);
   }
 
+  const all = () => {
+    return store.listValues<FileMeta>(FILE_TYPE);
+  };
+
+  const getContent = async (slug: string) => {
+    const files = await store.listValues<FileMeta>(FILE_TYPE);
+    const file = files.find((item) => item.slug === slug);
+    if (!file) return null;
+
+    const data = await openFile(path, file.file);
+    const decoder = new TextDecoder("utf-8");
+    const text = decoder.decode(data);
+    const content = parseMd(text);
+    return content;
+  };
+
+  const getText = async (slug: string) => {
+    const content = await getContent(slug);
+    if (!content) return null;
+    return getPlainText(content);
+  };
+
   return {
-    all: () => {
-      return store.listValues<FileMeta>(FILE_TYPE);
-    },
-    createModel: makeModel(store),
+    all,
+    createModel: makeModel(path, store),
+    getContent,
+    getText,
   };
 };
