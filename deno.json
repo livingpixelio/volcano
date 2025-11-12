@@ -23,6 +23,7 @@
     "@std/path": "jsr:@std/path@^1.1.2",
     "@std/yaml": "jsr:@std/yaml@^1.0.10",
     "@zod/zod": "jsr:@zod/zod@^4.1.12",
+    "sharp": "npm:sharp@^0.34.5",
     "slugify": "npm:@sindresorhus/slugify@^3.0.0",
     "unified": "npm:unified@^11.0.5",
     "remark-parse": "npm:remark-parse@^11.0.0",

@@ -60,3 +60,17 @@ export const openFile = (rootDirPath: string, fileEntry: FileEntry) =>
       `${fileEntry.basename}${fileEntry.extension}`
     )
   );
+
+export const mkdir = (path: string) => {
+  // Deno.mkdir throws if the directory already exists, but that's fine in this
+  // case, so just catch the error and ignore it
+  return Deno.mkdir(path, { recursive: true }).catch();
+};
+
+export const writeBuffer = (
+  rootDirPath: string,
+  filename: string,
+  data: Uint8Array<ArrayBuffer>
+) => {
+  return Deno.writeFile(path.join(rootDirPath, filename), data);
+};

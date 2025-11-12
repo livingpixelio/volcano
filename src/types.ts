@@ -19,13 +19,18 @@ export interface Vault {
 
   getText: (slug: string) => Promise<string | null>;
 
+  attachment: (
+    slug: string,
+    options?: GetAttachmentOptions
+  ) => Promise<Uint8Array | null>;
+
+  cacheAttachments: (options: GetAttachmentOptions[]) => Promise<void>;
+
   /**
    * Get original file contents
   getMd: (slug: string) => Promise<string>;
   * Get contents as HTML
   getHtml: (slug: string) => Promise<string>;
-
-  getAttachment
 
   precacheAttachments
 
@@ -39,6 +44,7 @@ export interface OpenVaultOptions {
    */
   path: string;
   cacheAdapter?: CacheAdapter;
+  attachmentCachePath?: string | null;
 }
 
 export interface FileMeta {
@@ -105,6 +111,11 @@ export type Transformer = (node: MdastNodeTy.MdastNode) => {
 /**
  * ATTACHMENTS
  */
+
+export interface GetAttachmentOptions {
+  width?: number;
+  height?: number;
+}
 
 /**
  * CACHE ADAPTER

@@ -1,5 +1,7 @@
 import { createCacheAdapterMemory } from "./adapters/CacheAdaptorMemory.ts";
-import { buildFullFileList, FileEntry, openFile } from "./disk/deno.ts";
+import { AttachmentManager } from "./attachment.ts";
+import { FILE_TYPE, ATTACHMENT_TYPE, UNTYPED_TYPE } from "./constants.ts";
+import { buildFullFileList, FileEntry, mkdir, openFile } from "./disk/deno.ts";
 import { makeModel } from "./model.ts";
 import {
   getChecksum,
@@ -13,21 +15,27 @@ import type {
   Vault,
   OpenVaultOptions,
   Frontmatter,
+  GetAttachmentOptions,
 } from "./types.ts";
-
-const FILE_TYPE = "_files";
-const ATTACHMENT_TYPE = "_attachments";
-const UNTYPED_TYPE = "_untyped";
 
 /**
  * Opens an Obsidian vault for querying. Note that the contents of the vault
  * will be read at the time this function is called.
  */
 export const openVault = async (options: OpenVaultOptions): Promise<Vault> => {
-  const { path, cacheAdapter: store } = {
+  const {
+    path,
+    cacheAdapter: store,
+    attachmentCachePath,
+  } = {
     cacheAdapter: createCacheAdapterMemory(),
+    attachmentCachePath: null,
     ...options,
   };
+
+  if (attachmentCachePath) {
+    await mkdir(attachmentCachePath);
+  }
 
   let fileList: FileEntry[];
   try {
@@ -117,10 +125,18 @@ export const openVault = async (options: OpenVaultOptions): Promise<Vault> => {
     return getPlainText(content);
   };
 
+  const { attachment, cacheAttachments } = AttachmentManager(
+    path,
+    store,
+    attachmentCachePath
+  );
+
   return {
     all,
     createModel: makeModel(path, store),
     getContent,
     getText,
+    attachment,
+    cacheAttachments,
   };
 };
