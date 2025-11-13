@@ -15,7 +15,6 @@ import type {
   Vault,
   OpenVaultOptions,
   Frontmatter,
-  GetAttachmentOptions,
 } from "./types.ts";
 
 /**

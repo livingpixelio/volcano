@@ -19,12 +19,9 @@ export interface Vault {
 
   getText: (slug: string) => Promise<string | null>;
 
-  attachment: (
-    slug: string,
-    options?: GetAttachmentOptions
-  ) => Promise<Uint8Array | null>;
+  attachment: (slug: string, width?: number) => Promise<Uint8Array | null>;
 
-  cacheAttachments: (options: GetAttachmentOptions[]) => Promise<void>;
+  cacheAttachments: (widths: number[]) => Promise<void>;
 
   /**
    * Get original file contents
@@ -111,11 +108,6 @@ export type Transformer = (node: MdastNodeTy.MdastNode) => {
 /**
  * ATTACHMENTS
  */
-
-export interface GetAttachmentOptions {
-  width?: number;
-  height?: number;
-}
 
 /**
  * CACHE ADAPTER

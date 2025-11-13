@@ -61,10 +61,21 @@ export const openFile = (rootDirPath: string, fileEntry: FileEntry) =>
     )
   );
 
-export const mkdir = (path: string) => {
+export const mkdir = async (path: string, removeFirst?: boolean) => {
+  if (removeFirst) {
+    await Deno.remove(path, { recursive: true });
+  }
+
   // Deno.mkdir throws if the directory already exists, but that's fine in this
   // case, so just catch the error and ignore it
   return Deno.mkdir(path, { recursive: true }).catch();
+};
+
+export const readFileIfExists = (
+  rootDirPath: string,
+  filename: string
+): Promise<Uint8Array | null> => {
+  return Deno.readFile(path.join(rootDirPath, filename)).catch(() => null);
 };
 
 export const writeBuffer = (

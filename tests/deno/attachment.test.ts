@@ -30,11 +30,11 @@ Deno.test("writes variants to attachment cache", async () => {
   });
 
   const original = await vault.attachment("forest1.jpg");
-  const small = await vault.attachment("forest1.jpg", { width: 300 });
+  const small = await vault.attachment("forest1.jpg", 300);
 
   assert(original && small && small.byteLength < original.byteLength);
 
-  // await Deno.remove(TMP_DIR, { recursive: true });
+  await Deno.remove(TMP_DIR, { recursive: true });
 });
 
 Deno.test("pre-caches all attachments if requested", async () => {
@@ -43,12 +43,10 @@ Deno.test("pre-caches all attachments if requested", async () => {
     attachmentCachePath: TMP_DIR,
   });
 
-  await vault.cacheAttachments([{ width: 300 }]);
+  await vault.cacheAttachments([300]);
 
-  const image = await Deno.readFile(
-    path.join(TMP_DIR, "forest1__width_300.jpg")
-  );
+  const image = await Deno.readFile(path.join(TMP_DIR, "forest1_w300.jpg"));
   assert(image?.byteLength);
 
-  // await Deno.remove(TMP_DIR, { recursive: true });
+  await Deno.remove(TMP_DIR, { recursive: true });
 });

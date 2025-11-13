@@ -12,6 +12,8 @@ Volcano is a JavaScript query API for Obsidian. You can read the contents of you
 
 ## Usage
 
+https://sharp.pixelplumbing.com/api-resize/
+
 ## License
 
 ## Contributing
