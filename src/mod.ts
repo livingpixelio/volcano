@@ -1,3 +1,7 @@
+export * from "./types.ts";
+
 export { openVault } from "./vault.ts";
 
-export * from "./types.ts";
+export { createCacheAdapterMemory } from "./adapters/CacheAdaptorMemory.ts";
+
+export { Transformers } from "./transform/index.ts";

@@ -9,6 +9,7 @@ import {
   getPlainText,
   parseMd,
 } from "./parsers/index.ts";
+import { builtins, runner } from "./transform/index.ts";
 
 import type {
   FileMeta,
@@ -31,6 +32,11 @@ export const openVault = async (options: OpenVaultOptions): Promise<Vault> => {
     attachmentCachePath: null,
     ...options,
   };
+
+  const resolvedTransformers = options.transformers
+    ? options.transformers(builtins)
+    : builtins;
+  const transformRunner = runner(resolvedTransformers, store);
 
   if (attachmentCachePath) {
     await mkdir(attachmentCachePath);
@@ -102,20 +108,26 @@ export const openVault = async (options: OpenVaultOptions): Promise<Vault> => {
     await store.delete(FILE_TYPE, keyToRemove);
   }
 
+  const fileEntryToContent = async (entry: FileEntry) => {
+    const data = await openFile(path, entry);
+    const decoder = new TextDecoder("utf-8");
+    const text = decoder.decode(data);
+    const content = parseMd(text);
+    const transformedContent = await transformRunner(content);
+    return transformedContent;
+  };
+
   const all = () => {
     return store.listValues<FileMeta>(FILE_TYPE);
   };
 
   const getContent = async (slug: string) => {
     const files = await store.listValues<FileMeta>(FILE_TYPE);
+
     const file = files.find((item) => item.slug === slug);
     if (!file) return null;
 
-    const data = await openFile(path, file.file);
-    const decoder = new TextDecoder("utf-8");
-    const text = decoder.decode(data);
-    const content = parseMd(text);
-    return content;
+    return fileEntryToContent(file.file);
   };
 
   const getText = async (slug: string) => {
@@ -132,7 +144,7 @@ export const openVault = async (options: OpenVaultOptions): Promise<Vault> => {
 
   return {
     all,
-    createModel: makeModel(path, store),
+    createModel: makeModel(store, fileEntryToContent),
     getContent,
     getText,
     attachment,

@@ -1,3 +1,5 @@
+import { FileMeta } from "../../types.ts";
+
 /**
  * Root
  */
@@ -55,6 +57,7 @@ export interface Code {
   type: "code";
   value: string;
   lang: Lang;
+  html?: string;
 }
 
 export interface ThematicBreak {
@@ -85,8 +88,8 @@ export interface Link {
 export interface XLink {
   type: "xlink";
   filename: string;
-  url?: string;
   children: Inline[];
+  file?: FileMeta;
 }
 
 export interface Emphasis {
@@ -122,6 +125,7 @@ export interface Attachment {
   filename: string;
   extension: string;
   alt?: string;
+  file?: FileMeta;
 }
 
 export type Inline =

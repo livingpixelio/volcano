@@ -1,9 +1,18 @@
 import z, { ZodError } from "@zod/zod";
-import { CacheAdapter, FileMeta, Frontmatter, Model } from "./types.ts";
-import { openFile } from "./disk/deno.ts";
-import { getPlainText, parseMd } from "./parsers/index.ts";
+import { getPlainText } from "./parsers/index.ts";
+import type {
+  CacheAdapter,
+  FileMeta,
+  Frontmatter,
+  MdastRootTy,
+  Model,
+} from "./types.ts";
+import type { FileEntry } from "./disk/deno.ts";
 
-export const makeModel = (vaultPath: string, store: CacheAdapter) => {
+export const makeModel = (
+  store: CacheAdapter,
+  fileEntryToContent: (entry: FileEntry) => Promise<MdastRootTy>
+) => {
   const createModel = <FrontmatterTy extends Frontmatter>(
     type: string,
     schema: z.ZodObject<Record<string, z.Schema>>
@@ -66,11 +75,7 @@ export const makeModel = (vaultPath: string, store: CacheAdapter) => {
 
       const parseResult = fullSchema.safeParse(note.frontmatter);
       handleParseError(note.meta.slug, parseResult.error);
-      const data = await openFile(vaultPath, note.meta.file);
-      const decoder = new TextDecoder("utf-8");
-      const text = decoder.decode(data);
-      const content = parseMd(text);
-      return content;
+      return fileEntryToContent(note.meta.file);
     };
 
     const getText = async (slug: string) => {
