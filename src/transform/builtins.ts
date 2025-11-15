@@ -1,4 +1,8 @@
-import Prism from "prismjs";
+import { Prism } from "prism-esm";
+import { loader as jsxLoader } from "prism-esm/components/prism-jsx.js";
+import { loader as tsxLoader } from "prism-esm/components/prism-tsx.js";
+import { loader as tsLoader } from "prism-esm/components/prism-typescript.js";
+
 import {
   Attachment,
   Code,
@@ -8,17 +12,17 @@ import {
 import { Transformer } from "../types.ts";
 import { warn } from "../log.ts";
 
-// Prism.languages.typescript = typescript;
-// Prism.languages.PrismJsx = jsx;
-// Prism.languages.PrismTsx = tsx;
-
 export const transformCode = (
   // The first argument is just a handle to extend Prism, which is poorly
   // typed. So just use any.
-  // deno-lint-ignore no-explicit-any
-  extendPrism?: (Prism: any) => void
+  extendPrism?: (prism: Prism) => void
 ): Transformer => {
-  extendPrism && extendPrism(Prism);
+  const prism = new Prism();
+  jsxLoader(prism);
+  tsxLoader(prism);
+  tsLoader(prism);
+
+  extendPrism && extendPrism(prism);
 
   return (node: MdastNode) => {
     if (node.type !== "code") return false;
@@ -32,9 +36,9 @@ export const transformCode = (
     if (!_node.lang) return false;
 
     try {
-      const html = Prism.highlight(
+      const html = prism.highlight(
         _node.value,
-        Prism.languages[_node.lang],
+        prism.languages[_node.lang],
         _node.lang
       );
       return {

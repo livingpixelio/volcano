@@ -30,7 +30,7 @@
     "remark-frontmatter": "npm:remark-frontmatter@^5.0.0",
     "remark-directive": "npm:remark-directive@^3.0.0",
     "unist-util-visit": "npm:unist-util-visit@^5.0.0",
-    "prismjs": "npm:prismjs@^1.29.0"
+    "prism-esm": "npm:prism-esm@^1.29.0-fix.6"
   },
   "nodeModulesDir": "auto"
 }
