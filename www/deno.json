@@ -20,7 +20,7 @@
     "preact": "npm:preact@^10.27.2",
     "@preact/signals": "npm:@preact/signals@^2.3.2",
     "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.0.7",
-    "volcano": "../src/mod.ts",
+    "@lps/volcano": "jsr:@lps/volcano",
     "vite": "npm:vite@^7.1.3"
   },
   "compilerOptions": {

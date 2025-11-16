@@ -1,5 +1,5 @@
 import { define } from "../utils.ts";
-import { openVault } from "volcano";
+import { openVault } from "@lps/volcano";
 import * as path from "@std/path";
 
 export const handler = define.handlers({
