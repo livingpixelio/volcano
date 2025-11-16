@@ -24,7 +24,7 @@ class CacheAdapterMemory implements CacheAdapter {
     return allKeys.filter((key) => key[0] === type).map((key) => key[1]);
   }
 
-  public async listValues<Ty>(type: string) {
+  public async listValues<Ty>(type: string): Promise<Ty[]> {
     const keys = await this.list(type);
     return Promise.all(
       keys.map((key) => this.get<Ty>(type, key) as Promise<Ty>)
@@ -45,7 +45,7 @@ class CacheAdapterMemory implements CacheAdapter {
     return Promise.resolve();
   }
 
-  public deleteAll(type: string) {
+  public deleteAll(type: string): Promise<void> {
     this.cache = Object.keys(this.cache).reduce((acc, cacheKey) => {
       const [itemType] = cacheKey.split(":");
       if (itemType === type) {
@@ -58,7 +58,7 @@ class CacheAdapterMemory implements CacheAdapter {
     return Promise.resolve();
   }
 
-  public delete(type: string, key: string) {
+  public delete(type: string, key: string): Promise<void> {
     const toDelete = `${type}:${key}`;
     this.cache = Object.keys(this.cache).reduce((acc, cacheKey) => {
       if (cacheKey === toDelete) {
@@ -71,10 +71,10 @@ class CacheAdapterMemory implements CacheAdapter {
     return Promise.resolve();
   }
 
-  public purge() {
+  public purge(): Promise<void> {
     this.cache = {};
     return Promise.resolve();
   }
 }
 
-export const createCacheAdapterMemory = () => new CacheAdapterMemory();
+export const createCacheAdapterMemory = (): CacheAdapter => new CacheAdapterMemory();

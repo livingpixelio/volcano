@@ -4,3 +4,6 @@ www/_fresh
 www/.env
 www/.env.*
 .obsidian/
+
+.DS_Store
+www/.DS_Store

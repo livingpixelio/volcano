@@ -1,0 +1,4 @@
+- Open your notes as structured data
+- Resolves wiki-links
+- Verifies frontmatter/bases according to a schema
+- Resizes images for serving over the web
