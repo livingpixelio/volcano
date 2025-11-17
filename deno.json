@@ -8,7 +8,8 @@
   "license": "MIT NON-AI",
   "lock": false,
   "tasks": {
-    "test": "deno test -A"
+    "test": "deno test -A",
+    "docs": "deno doc --json ./src/mod.ts > denodoc/tree.json"
   },
   "lint": {
     "rules": {
