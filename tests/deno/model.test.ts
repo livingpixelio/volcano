@@ -44,3 +44,17 @@ Deno.test("return content when single note is requested", async () => {
   );
   assertEquals(result, "The content");
 });
+
+Deno.test("find a search term in the content", async () => {
+  const schema = z.object({
+    date_published: z.date().nullable().optional(),
+  });
+  const vault = await openVault({
+    path: path.join(Deno.cwd(), "tests/data/blog"),
+  });
+  const post = vault.createModel("Post", schema);
+  const results = await post.search("paragraph");
+
+  assertEquals(results.length, 1);
+  assertEquals(results[0].blocks, [3]);
+});

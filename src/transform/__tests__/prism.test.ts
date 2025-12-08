@@ -1,4 +1,3 @@
-import { assert } from "@std/assert/assert";
 import { parseMd, selectNodes } from "../../parsers/index.ts";
 import { transformCode } from "../builtins.ts";
 import { runner } from "../index.ts";
