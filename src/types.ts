@@ -30,10 +30,7 @@ export interface Vault {
   getHtml: (slug: string) => Promise<string>;
   */
 
-  search: (
-    query: string,
-    options?: SearchOptions
-  ) => Promise<Array<FileMeta & { blocks?: number[] }>>;
+  search: (query: string, options?: SearchOptions) => Promise<SearchHit[]>;
 }
 
 export interface OpenVaultOptions {
@@ -56,6 +53,13 @@ export interface FileMeta {
   type: string;
   checksum: string;
   file: FileEntry;
+}
+
+export interface SearchHit {
+  slug: string;
+  title: string;
+  type: string;
+  blocks?: number[];
 }
 
 /**
@@ -90,10 +94,7 @@ export interface Model<FrontmatterTy extends Frontmatter> {
   getAttachment
   */
 
-  search: (
-    query: string,
-    options?: SearchOptions
-  ) => Promise<Array<FileMeta & { blocks?: number[] }>>;
+  search: (query: string, options?: SearchOptions) => Promise<SearchHit[]>;
 }
 
 // frontmatter will always be a record, but we don't know much beyond that

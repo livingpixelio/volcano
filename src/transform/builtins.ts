@@ -63,7 +63,11 @@ export const getFileMeta: Transformer = (node: MdastNode) => {
   return {
     key: `${_node.type}:${_node.filename}`,
     transform: (getDataFromFilename) => {
-      return getDataFromFilename(_node.filename)
+      return getDataFromFilename(
+        _node.type === "xlink"
+          ? _node.filename
+          : `${_node.filename}${_node.extension}`
+      )
         .then((file) => {
           if (!file) {
             warn(`Unable to get data for referenced file: ${_node.filename}`);

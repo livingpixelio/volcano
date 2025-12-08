@@ -86,8 +86,9 @@ Deno.test("find a search term in the content", async () => {
   const vault = await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
   });
-  const results = await vault.search("paragraph");
+  const results = await vault.search("that links to");
 
   assertEquals(results.length, 1);
-  assertEquals(results[0].blocks, [3]);
+  assertEquals(results[0].slug, "a-custom-page");
+  assertEquals(results[0].blocks, [2]);
 });
