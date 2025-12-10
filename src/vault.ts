@@ -9,6 +9,7 @@ import {
   getPlainText,
   parseMd,
 } from "./parsers/index.ts";
+import { CreateSearch } from "./search.ts";
 import { builtins, runner } from "./transform/index.ts";
 
 import type {
@@ -142,6 +143,17 @@ export const openVault = async (options: OpenVaultOptions): Promise<Vault> => {
     attachmentCachePath
   );
 
+  const search = CreateSearch(async () => {
+    const files = await all();
+    return files
+      .filter((file) => file.file.extension === ".md")
+      .map((file) => ({
+        title: file.title,
+        slug: file.slug,
+        type: file.type,
+      }));
+  }, getContent);
+
   return {
     all,
     createModel: makeModel(store, fileEntryToContent),
@@ -149,5 +161,6 @@ export const openVault = async (options: OpenVaultOptions): Promise<Vault> => {
     getText,
     attachment,
     cacheAttachments,
+    search,
   };
 };

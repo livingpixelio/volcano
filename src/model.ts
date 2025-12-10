@@ -8,6 +8,7 @@ import type {
   Model,
 } from "./types.ts";
 import type { FileEntry } from "./disk/deno.ts";
+import { CreateSearch } from "./search.ts";
 
 export const makeModel = (
   store: CacheAdapter,
@@ -84,11 +85,21 @@ export const makeModel = (
       return getPlainText(content);
     };
 
+    const search = CreateSearch(async () => {
+      const items = await all();
+      return items.map((item) => ({
+        title: item.title,
+        slug: item.slug,
+        type,
+      }));
+    }, getContent);
+
     return {
       all,
       get,
       getContent,
       getText,
+      search,
     };
   };
 

@@ -28,11 +28,9 @@ export interface Vault {
   getMd: (slug: string) => Promise<string>;
   * Get contents as HTML
   getHtml: (slug: string) => Promise<string>;
-
-  precacheAttachments
-
-  search
   */
+
+  search: (query: string, options?: SearchOptions) => Promise<SearchHit[]>;
 }
 
 export interface OpenVaultOptions {
@@ -45,12 +43,23 @@ export interface OpenVaultOptions {
   transformers?: (defaultTransformers: Transformer[]) => Transformer[];
 }
 
+export interface SearchOptions {
+  limit?: number;
+}
+
 export interface FileMeta {
   slug: string;
   title: string;
   type: string;
   checksum: string;
   file: FileEntry;
+}
+
+export interface SearchHit {
+  slug: string;
+  title: string;
+  type: string;
+  blocks?: number[];
 }
 
 /**
@@ -83,9 +92,9 @@ export interface Model<FrontmatterTy extends Frontmatter> {
   getHtml: (slug: string) => Promise<string>;
 
   getAttachment
-
-  search
   */
+
+  search: (query: string, options?: SearchOptions) => Promise<SearchHit[]>;
 }
 
 // frontmatter will always be a record, but we don't know much beyond that
@@ -107,10 +116,6 @@ export type Transformer = (node: MdastNodeTy.MdastNode) =>
       ) => Promise<MdastNodeTy.MdastNode> | MdastNodeTy.MdastNode;
     }
   | false;
-
-/**
- * ATTACHMENTS
- */
 
 /**
  * CACHE ADAPTER

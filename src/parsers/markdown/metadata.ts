@@ -27,7 +27,7 @@ export const getPlainText = (node: MdastNode) => {
   const selector = selectNodes(flattenTree(node));
   return selector<Text>("text")
     .map((node) => node.value)
-    .join("\n\n");
+    .join(" ");
 };
 
 // @TODO: Can speed this up by not parsing the entire tree first.
