@@ -1,8 +1,10 @@
 import { assertEquals } from "@std/assert";
 import { createCacheAdapterMemory } from "../CacheAdaptorMemory.ts";
+import { createCacheAdapterDenoKV } from "../CacheAdaptorDenoKV.ts";
 
 const ADAPTERS = {
   memory: createCacheAdapterMemory(),
+  denoKv: createCacheAdapterDenoKV(await Deno.openKv(":memory:")),
 };
 
 Object.entries(ADAPTERS).forEach(([key, adapter]) => {
