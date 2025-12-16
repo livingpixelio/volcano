@@ -4,7 +4,7 @@ slug: a-custom-post-slug
 date_published: 2025-07-25
 date_modified: 
 image: 
-banner_image: 
+banner_image: a-banner-image.png
 external_url: 
 tags: 
 attachments:

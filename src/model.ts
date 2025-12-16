@@ -16,12 +16,14 @@ export const makeModel = (
 ) => {
   const createModel = <FrontmatterTy extends Frontmatter>(
     type: string,
-    schema: z.ZodObject<Record<string, z.Schema>>
+    schema: z.ZodType<FrontmatterTy>
   ): Model<FrontmatterTy> => {
-    const fullSchema = schema.extend({
-      type: z.string().nullable().optional(),
-      slug: z.string().nullable().optional(),
-    });
+    const fullSchema = (schema as z.ZodObject<Record<string, z.Schema>>).extend(
+      {
+        type: z.string().nullable().optional(),
+        slug: z.string().nullable().optional(),
+      }
+    );
 
     const handleParseError = (slug: string, error?: ZodError) => {
       if (error) {
@@ -37,17 +39,25 @@ export const makeModel = (
         frontmatter: FrontmatterTy;
       }>(type);
 
-      const matches = notes.filter(({ meta, frontmatter }) => {
-        const result = fullSchema.safeParse(frontmatter);
-        handleParseError(meta.slug, result.error);
-        return result.success;
-      });
+      const matches = notes
+        .map(({ meta, frontmatter }) => {
+          const result = fullSchema.safeParse(frontmatter);
+          handleParseError(meta.slug, result.error);
+          return result.success
+            ? {
+                slug: meta.slug,
+                title: meta.title,
+                frontmatter: result.data,
+              }
+            : null;
+        })
+        .filter(Boolean);
 
-      return matches.map((match) => ({
-        slug: match.meta.slug,
-        title: match.meta.title,
-        frontmatter: match.frontmatter,
-      }));
+      return matches as Array<{
+        title: string;
+        slug: string;
+        frontmatter: FrontmatterTy;
+      }>;
     };
 
     const get = async (slug: string) => {

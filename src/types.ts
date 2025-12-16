@@ -12,7 +12,7 @@ export interface Vault {
 
   createModel: <FrontmatterTy extends Frontmatter>(
     type: string,
-    schema: z.ZodObject<Record<string, z.Schema>>
+    schema: z.ZodType<FrontmatterTy>
   ) => Model<FrontmatterTy>;
 
   getContent: (slug: string) => Promise<Root | null>;
@@ -98,8 +98,10 @@ export interface Model<FrontmatterTy extends Frontmatter> {
 }
 
 // frontmatter will always be a record, but we don't know much beyond that
-// deno-lint-ignore no-explicit-any
-export type Frontmatter = Record<string, any>;
+export type Frontmatter = Record<
+  string,
+  string | number | boolean | Date | null | undefined
+>;
 
 /**
  * CONTENT
