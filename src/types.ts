@@ -19,7 +19,7 @@ export interface Vault {
 
   getText: (slug: string) => Promise<string | null>;
 
-  attachment: (slug: string, width?: number) => Promise<Uint8Array | null>;
+  attachment: (slug: string, width?: number) => Promise<Blob | null>;
 
   cacheAttachments: (widths: number[]) => Promise<void>;
 

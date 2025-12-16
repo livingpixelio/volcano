@@ -7,7 +7,7 @@ Deno.test("get attachment", async () => {
     path: path.join(Deno.cwd(), "tests/data/blog"),
   });
   const data = await vault.attachment("forest1.jpg");
-  assert(data?.byteLength);
+  assert(data?.size);
 });
 
 const TMP_DIR = path.join(Deno.cwd(), "tmp");
@@ -32,7 +32,7 @@ Deno.test("writes variants to attachment cache", async () => {
   const original = await vault.attachment("forest1.jpg");
   const small = await vault.attachment("forest1.jpg", 300);
 
-  assert(original && small && small.byteLength < original.byteLength);
+  assert(original && small && small.size < original.size);
 
   await Deno.remove(TMP_DIR, { recursive: true });
 });
