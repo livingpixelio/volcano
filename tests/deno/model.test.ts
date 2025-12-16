@@ -10,10 +10,26 @@ Deno.test("get all notes matching schema", async () => {
   const vault = await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
   });
-  const post = vault.createModel<z.infer<typeof schema>>("Post", schema);
+  const post = vault.createModel("Post", schema);
   const results = await post.all();
-  results[0].frontmatter.date_published;
   assertEquals(results.length, 2);
+});
+
+Deno.test("ignore frontmatter not passed to the schema", async () => {
+  const schema = z.object({
+    date_published: z.date().nullable().optional(),
+  });
+  const vault = await openVault({
+    path: path.join(Deno.cwd(), "tests/data/blog"),
+  });
+  const post = vault.createModel("Post", schema);
+  const results = await post.all();
+  const bannerImages = results.filter(
+    (result) =>
+      (result.frontmatter as { date_published: Date; banner_image: string })
+        .banner_image
+  );
+  assertEquals(bannerImages.length, 0);
 });
 
 Deno.test("throw when schemas do not match", async () => {
