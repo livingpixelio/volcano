@@ -3,17 +3,18 @@ import { Attachment, Shortcode, Text, XLink } from "./MdastNode.ts";
 const take = (
   from: string,
   to: string,
-  testContents?: (contents: string) => boolean,
+  testContents?: (contents: string) => boolean
 ) => {
   const parse = (
     input: string,
-    skip?: number,
+    skip?: number
   ): [string, string, string] | null => {
     const startIndex = input.indexOf(from, skip);
     if (startIndex < 0) {
       return null;
     }
-    const endIndex = input.slice(startIndex + from.length).indexOf(to) +
+    const endIndex =
+      input.slice(startIndex + from.length).indexOf(to) +
       startIndex +
       from.length;
     if (endIndex < startIndex + from.length) {
@@ -39,7 +40,7 @@ const takeXLink = take("[[", "]]");
 const takeShortcode = take("[", "]");
 
 export const parseCustom = (
-  input: string,
+  input: string
 ): Array<Text | XLink | Attachment | Shortcode> | null => {
   const image = takeImage(input);
   if (image) {
@@ -47,10 +48,12 @@ export const parseCustom = (
     const filenameParts = nodeParts[0].split(".");
 
     if (filenameParts.length < 2) {
-      return reparse(image.map((value) => ({
-        type: "text",
-        value,
-      })));
+      return reparse(
+        image.map((value) => ({
+          type: "text",
+          value,
+        }))
+      );
     }
 
     const node: Attachment = {
@@ -73,9 +76,7 @@ export const parseCustom = (
     const node: XLink = {
       type: "xlink",
       filename: nodeParts[0],
-      children: [
-        { type: "text", value: nodeParts[1] || nodeParts[0] },
-      ],
+      children: [{ type: "text", value: nodeParts[1] || nodeParts[0] }],
     };
     return reparse([
       { type: "text", value: xlink[0] },
@@ -90,7 +91,7 @@ export const parseCustom = (
     const node: Shortcode = {
       type: "shortcode",
       name: nodeParts[0],
-      ...parseShortcodeAttr(nodeParts[1]),
+      ...parseShortcodeAttr(nodeParts.slice(1).join(" ")),
     };
     return reparse([
       { type: "text", value: shortcode[0] },

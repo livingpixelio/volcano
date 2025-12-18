@@ -51,7 +51,7 @@ Deno.test("parse Attachments", () => {
   assertEquals(parseCustom(input), expected);
 });
 
-Deno.test("parse Attachments", () => {
+Deno.test("parse shortcodes", () => {
   const input =
     'This hobbit was a very well-to-do hobbit[Ref pageNum="1"], and his name was Baggins.';
   const expected: MdastNode[] = [
@@ -60,6 +60,23 @@ Deno.test("parse Attachments", () => {
       type: "shortcode",
       name: "Ref",
       pageNum: "1",
+    },
+    { type: "text", value: ", and his name was Baggins." },
+  ];
+
+  assertEquals(parseCustom(input), expected);
+});
+
+Deno.test("parse shortcodes with multiple attributes", () => {
+  const input =
+    'This hobbit was a very [Ref pageNum="1" text="well-to-do hobbit"], and his name was Baggins.';
+  const expected: MdastNode[] = [
+    { type: "text", value: "This hobbit was a very " },
+    {
+      type: "shortcode",
+      name: "Ref",
+      pageNum: "1",
+      text: "well-to-do hobbit",
     },
     { type: "text", value: ", and his name was Baggins." },
   ];
