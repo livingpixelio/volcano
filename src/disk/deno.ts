@@ -78,10 +78,16 @@ export const readFileIfExists = (
   return Deno.readFile(path.join(rootDirPath, filename)).catch(() => null);
 };
 
-export const writeBuffer = (
+export const writeBuffer = async (
   rootDirPath: string,
   filename: string,
   data: Uint8Array<ArrayBuffer>
 ) => {
+  const parts = filename.split("/");
+  if (parts.length > 1) {
+    const fullPath = path.join(rootDirPath, ...parts.slice(0, -1));
+    await mkdir(fullPath);
+  }
+
   return Deno.writeFile(path.join(rootDirPath, filename), data);
 };

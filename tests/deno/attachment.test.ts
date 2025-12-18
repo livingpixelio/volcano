@@ -48,5 +48,10 @@ Deno.test("pre-caches all attachments if requested", async () => {
   const image = await Deno.readFile(path.join(TMP_DIR, "forest1_w300.jpg"));
   assert(image?.byteLength);
 
+  const subdirImage = await Deno.readFile(
+    path.join(TMP_DIR, "a-folder", "mushrooms1_w300.jpg")
+  );
+  assert(subdirImage?.byteLength);
+
   await Deno.remove(TMP_DIR, { recursive: true });
 });
