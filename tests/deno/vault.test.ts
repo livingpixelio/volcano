@@ -26,7 +26,7 @@ Deno.test("openVault.all", async () => {
     path: path.join(Deno.cwd(), "tests/data/blog"),
   });
   const files = await vault.all();
-  assertEquals(files.length, 7);
+  assertEquals(files.length, 8);
 });
 
 Deno.test("supply the same cache and run it twice", async () => {
@@ -42,7 +42,7 @@ Deno.test("supply the same cache and run it twice", async () => {
     cacheAdapter: cache,
   });
   const files = await vault.all();
-  assertEquals(files.length, 7);
+  assertEquals(files.length, 8);
 
   const final = await cache.listAll();
   assertEquals(init.length, final.length);
