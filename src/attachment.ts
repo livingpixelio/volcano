@@ -78,8 +78,13 @@ const processImage = async (
     return bytes;
   }
   const resized = await img
-    .resize({ width: Math.floor(width), height: Math.floor(width * aspect) })
-    .encode(format);
+    // .resize({
+    //   width: Math.floor(width),
+    //   height: Math.floor(width * aspect),
+    // })
+    .encode(format, {
+      progressive: true,
+    });
   return new Uint8Array(resized);
 };
 
