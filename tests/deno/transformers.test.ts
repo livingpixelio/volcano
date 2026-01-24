@@ -9,6 +9,7 @@ Deno.test("transforms internal links into URLs", async () => {
   const vault = await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
     transformers: () => [],
+    log: "silent",
   });
   const content = await vault.getContent("a-custom-page");
   if (!content) {
@@ -19,19 +20,19 @@ Deno.test("transforms internal links into URLs", async () => {
 
   const vaultWithTransform = await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
+    log: "silent",
   });
-  const contentTransformed = await vaultWithTransform.getContent(
-    "a-custom-page"
-  );
+  const contentTransformed =
+    await vaultWithTransform.getContent("a-custom-page");
   if (!contentTransformed) {
     throw new Error("content not found");
   }
   const xlinksTransformed = selectNodes(flattenTree(contentTransformed))<XLink>(
-    "xlink"
+    "xlink",
   );
   assertEquals(
     xlinksTransformed[0].file?.slug,
-    "a-folder/a-page-inside-a-folder"
+    "a-folder/a-page-inside-a-folder",
   );
 });
 
@@ -39,6 +40,7 @@ Deno.test("transforms internal attachment references into URLs", async () => {
   const vault = await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
     transformers: () => [],
+    log: "silent",
   });
   const content = await vault.getContent("a-custom-post-slug");
   if (!content) {
@@ -48,16 +50,16 @@ Deno.test("transforms internal attachment references into URLs", async () => {
   assertFalse(xlinks[0].file?.slug);
 
   const vaultWithTransform = await openVault({
+    log: "silent",
     path: path.join(Deno.cwd(), "tests/data/blog"),
   });
-  const contentTransformed = await vaultWithTransform.getContent(
-    "a-custom-post-slug"
-  );
+  const contentTransformed =
+    await vaultWithTransform.getContent("a-custom-post-slug");
   if (!contentTransformed) {
     throw new Error("content not found");
   }
   const xlinksTransformed = selectNodes(
-    flattenTree(contentTransformed)
+    flattenTree(contentTransformed),
   )<Attachment>("attachment");
   assertEquals(xlinksTransformed[0].file?.slug, "scerevisiae.jpg");
 });

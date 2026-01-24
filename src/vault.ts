@@ -11,6 +11,7 @@ import {
 } from "./parsers/index.ts";
 import { CreateSearch } from "./search.ts";
 import { builtins, runner } from "./transform/index.ts";
+import { createLog } from "./log.ts";
 
 import type {
   FileMeta,
@@ -34,6 +35,8 @@ export const openVault = async (options: OpenVaultOptions): Promise<Vault> => {
     ...options,
   };
 
+  const log = createLog(options.log || "build");
+
   const resolvedTransformers = options.transformers
     ? options.transformers(builtins)
     : builtins;
@@ -44,12 +47,15 @@ export const openVault = async (options: OpenVaultOptions): Promise<Vault> => {
   }
 
   let fileList: FileEntry[];
+  log.success("Building file list\u2026");
   try {
     fileList = await buildFullFileList(path);
   } catch (_err) {
+    log.failure("Cannot read vault");
     throw new Error("CannotReadVault");
   }
 
+  log.success("Updating cache\u2026");
   const keysToRemove = new Set(await store.list(FILE_TYPE));
   for (const entry of fileList) {
     keysToRemove.delete(entry.defaultSlug);
@@ -89,7 +95,7 @@ export const openVault = async (options: OpenVaultOptions): Promise<Vault> => {
             file: entry,
           },
           frontmatter,
-        }
+        },
       );
     } else {
       await store.set<FileMeta>(FILE_TYPE, entry.defaultSlug, {
@@ -140,7 +146,8 @@ export const openVault = async (options: OpenVaultOptions): Promise<Vault> => {
   const { attachment, cacheAttachments } = AttachmentManager(
     path,
     store,
-    attachmentCachePath
+    attachmentCachePath,
+    log,
   );
 
   const search = CreateSearch(async () => {

@@ -10,19 +10,20 @@ import {
   XLink,
 } from "../parsers/markdown/MdastNode.ts";
 import { Transformer } from "../types.ts";
-import { warn } from "../log.ts";
+import { createLog } from "../log.ts";
 
-export const transformCode = (
-  // The first argument is just a handle to extend Prism, which is poorly
-  // typed. So just use any.
-  extendPrism?: (prism: Prism) => void
-): Transformer => {
+interface TransformCodeArgs {
+  extendPrism?: (prism: Prism) => void;
+  onFailedTransform?: "warn" | "die" | "ignore";
+}
+
+export const transformCode = (args?: TransformCodeArgs): Transformer => {
   const prism = new Prism();
   jsxLoader(prism);
   tsxLoader(prism);
   tsLoader(prism);
 
-  extendPrism && extendPrism(prism);
+  args?.extendPrism && args?.extendPrism(prism);
 
   return (node: MdastNode) => {
     if (node.type !== "code") return false;
@@ -39,7 +40,7 @@ export const transformCode = (
       const html = prism.highlight(
         _node.value,
         prism.languages[_node.lang],
-        _node.lang
+        _node.lang,
       );
       return {
         key: `code:${offset}`,
@@ -48,42 +49,61 @@ export const transformCode = (
           html,
         }),
       };
-    } catch (_err) {
-      warn(`Prism highlightling failed, offset: ${offset}`);
+    } catch (err) {
+      if (args?.onFailedTransform === "die") {
+        throw err;
+      }
+      if (args?.onFailedTransform === "warn") {
+        createLog("warn").failure(
+          `Prism highlightling failed, offset: ${offset}`,
+        );
+      }
       return false;
     }
   };
 };
 
-export const getFileMeta: Transformer = (node: MdastNode) => {
-  if (!["xlink", "attachment"].includes(node.type)) {
-    return false;
-  }
-  const _node = node as Attachment | XLink;
-  return {
-    key: `${_node.type}:${_node.filename}`,
-    transform: (getDataFromFilename) => {
-      return getDataFromFilename(
-        _node.type === "xlink"
-          ? _node.filename
-          : `${_node.filename}${_node.extension}`
-      )
-        .then((file) => {
-          if (!file) {
-            warn(`Unable to get data for referenced file: ${_node.filename}`);
-            return node;
-          }
-          return {
-            ..._node,
-            file,
-          };
-        })
-        .catch(() => {
-          warn(`Unable to get data for referenced file: ${_node.filename}`);
-          return node;
-        });
-    },
-  };
-};
+interface GetFileMetaArgs {
+  onFailedTransform?: "warn" | "die" | "ignore";
+}
 
-export const builtins = [transformCode(), getFileMeta];
+export const getFileMeta =
+  (args?: GetFileMetaArgs): Transformer =>
+  (node: MdastNode) => {
+    if (!["xlink", "attachment"].includes(node.type)) {
+      return false;
+    }
+    const _node = node as Attachment | XLink;
+    return {
+      key: `${_node.type}:${_node.filename}`,
+      transform: (getDataFromFilename) => {
+        return getDataFromFilename(
+          _node.type === "xlink"
+            ? _node.filename
+            : `${_node.filename}${_node.extension}`,
+        )
+          .then((file) => {
+            if (!file) {
+              throw new Error("MissingFile");
+            }
+            return {
+              ..._node,
+              file,
+            };
+          })
+          .catch((err) => {
+            if (args?.onFailedTransform === "die") {
+              throw err;
+            }
+            if (args?.onFailedTransform === "warn") {
+              createLog("warn").failure(
+                `Unable to get data for referenced file: ${_node.filename}`,
+              );
+            }
+            return false;
+          });
+      },
+    };
+  };
+
+export const builtins = [transformCode(), getFileMeta()];
