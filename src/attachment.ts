@@ -2,15 +2,17 @@ import { Image } from "@cross/image";
 import { ATTACHMENT_TYPE, FILE_TYPE } from "./constants.ts";
 import { mkdir, openFile, readFileIfExists, writeBuffer } from "./disk/deno.ts";
 import { CacheAdapter, FileMeta } from "./types.ts";
+import { createLog } from "./log.ts";
 
 export const AttachmentManager = (
   path: string,
   store: CacheAdapter,
-  attachmentCachePath: string | null
+  attachmentCachePath: string | null,
+  log: ReturnType<typeof createLog>,
 ) => {
   const attachment = async (
     slug: string,
-    width?: number
+    width?: number,
   ): Promise<Blob | null> => {
     const file = await store.get<FileMeta>(FILE_TYPE, slug);
     if (!file) return null;
@@ -31,7 +33,7 @@ export const AttachmentManager = (
         writeBuffer(
           attachmentCachePath,
           createCacheFilename(file, widthInt),
-          output
+          output,
         );
       }
       return toBlob(output, file);
@@ -48,6 +50,8 @@ export const AttachmentManager = (
     for (const file of files) {
       if (file.type !== ATTACHMENT_TYPE) continue;
 
+      log.success(`Caching image "${file.file.title}"`);
+
       for (const width of widths) {
         await attachment(file.slug, width);
       }
@@ -62,7 +66,7 @@ export const AttachmentManager = (
 
 const processImage = async (
   bytes: Uint8Array<ArrayBuffer>,
-  width: number
+  width: number,
 ): Promise<Uint8Array<ArrayBuffer>> => {
   const img = await Image.decode(bytes);
   const metadata = await Image.extractMetadata(bytes);
@@ -91,7 +95,7 @@ const createCacheFilename = (file: FileMeta, width: number) => {
 const checkCache = (
   cachePath: string | null,
   file: FileMeta,
-  width: number
+  width: number,
 ) => {
   if (!cachePath) return null;
   return readFileIfExists(cachePath, createCacheFilename(file, width));
