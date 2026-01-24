@@ -5,6 +5,7 @@ import { assert } from "@std/assert/assert";
 Deno.test("get attachment", async () => {
   const vault = await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
+    log: "silent",
   });
   const data = await vault.attachment("forest1.jpg");
   assert(data?.size);
@@ -16,6 +17,7 @@ Deno.test("creates attachment cache folder when specified", async () => {
   await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
     attachmentCachePath: TMP_DIR,
+    log: "silent",
   });
 
   Deno.readDir(TMP_DIR);
@@ -27,6 +29,7 @@ Deno.test("writes variants to attachment cache", async () => {
   const vault = await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
     attachmentCachePath: TMP_DIR,
+    log: "silent",
   });
 
   const original = await vault.attachment("forest1.jpg");
@@ -40,6 +43,7 @@ Deno.test("writes variants to attachment cache", async () => {
 Deno.test("pre-caches all attachments if requested", async () => {
   const vault = await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
+    log: "silent",
     attachmentCachePath: TMP_DIR,
   });
 
@@ -49,7 +53,7 @@ Deno.test("pre-caches all attachments if requested", async () => {
   assert(image?.byteLength);
 
   const subdirImage = await Deno.readFile(
-    path.join(TMP_DIR, "a-folder", "mushrooms1_w300.jpg")
+    path.join(TMP_DIR, "a-folder", "mushrooms1_w300.jpg"),
   );
   assert(subdirImage?.byteLength);
 

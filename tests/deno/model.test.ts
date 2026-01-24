@@ -9,6 +9,7 @@ Deno.test("get all notes matching schema", async () => {
   });
   const vault = await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
+    log: "silent",
   });
   const post = vault.createModel("Post", schema);
   const results = await post.all();
@@ -21,13 +22,14 @@ Deno.test("ignore frontmatter not passed to the schema", async () => {
   });
   const vault = await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
+    log: "silent",
   });
   const post = vault.createModel("Post", schema);
   const results = await post.all();
   const bannerImages = results.filter(
     (result) =>
       (result.frontmatter as { date_published: Date; banner_image: string })
-        .banner_image
+        .banner_image,
   );
   assertEquals(bannerImages.length, 0);
 });
@@ -38,6 +40,7 @@ Deno.test("throw when schemas do not match", async () => {
   });
   const vault = await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
+    log: "silent",
   });
   const post = vault.createModel("Post", schema);
   const result = await post
@@ -52,11 +55,12 @@ Deno.test("return content when single note is requested", async () => {
     date_published: z.date().nullable().optional(),
   });
   const vault = await openVault({
+    log: "silent",
     path: path.join(Deno.cwd(), "tests/data/blog"),
   });
   const post = vault.createModel("Post", schema);
   const result = await post.getText(
-    "a-post-with-special-characters-in-the-title"
+    "a-post-with-special-characters-in-the-title",
   );
   assertEquals(result, "The content");
 });
@@ -66,6 +70,7 @@ Deno.test("find a search term in the content", async () => {
     date_published: z.date().nullable().optional(),
   });
   const vault = await openVault({
+    log: "silent",
     path: path.join(Deno.cwd(), "tests/data/blog"),
   });
   const post = vault.createModel("Post", schema);

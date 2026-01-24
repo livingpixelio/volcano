@@ -12,7 +12,7 @@ export interface Vault {
 
   createModel: <FrontmatterTy extends Frontmatter>(
     type: string,
-    schema: z.ZodType<FrontmatterTy>
+    schema: z.ZodType<FrontmatterTy>,
   ) => Model<FrontmatterTy>;
 
   getContent: (slug: string) => Promise<Root | null>;
@@ -38,6 +38,7 @@ export interface OpenVaultOptions {
    * Absolute path of Obsidian vault.
    */
   path: string;
+  log?: "build" | "warn" | "silent";
   cacheAdapter?: CacheAdapter;
   attachmentCachePath?: string | null;
   transformers?: (defaultTransformers: Transformer[]) => Transformer[];
@@ -114,8 +115,11 @@ export type Transformer = (node: MdastNodeTy.MdastNode) =>
   | {
       key: string;
       transform: (
-        getDataFromTitle: (title: string) => Promise<FileMeta | null>
-      ) => Promise<MdastNodeTy.MdastNode> | MdastNodeTy.MdastNode;
+        getDataFromTitle: (title: string) => Promise<FileMeta | null>,
+      ) =>
+        | Promise<MdastNodeTy.MdastNode | false>
+        | MdastNodeTy.MdastNode
+        | false;
     }
   | false;
 
