@@ -1,0 +1,3993 @@
+{
+  "version": 2,
+  "nodes": {
+    "src/mod.ts": {
+      "symbols": [
+        {
+          "name": "openVault",
+          "declarations": [
+            {
+              "location": {
+                "filename": "src/vault.ts",
+                "line": 26,
+                "col": 13,
+                "byteIndex": 806
+              },
+              "declarationKind": "export",
+              "jsDoc": {
+                "doc": "Opens an Obsidian vault for querying. Note that the contents of the vault\nwill be read at the time this function is called."
+              },
+              "kind": "function",
+              "def": {
+                "params": [
+                  {
+                    "kind": "identifier",
+                    "name": "options",
+                    "optional": false,
+                    "tsType": {
+                      "repr": "OpenVaultOptions",
+                      "kind": "typeRef",
+                      "value": {
+                        "typeName": "OpenVaultOptions",
+                        "resolution": {
+                          "kind": "import",
+                          "specifier": "./types.ts",
+                          "name": "OpenVaultOptions"
+                        }
+                      }
+                    }
+                  }
+                ],
+                "returnType": {
+                  "repr": "Promise",
+                  "kind": "typeRef",
+                  "value": {
+                    "typeParams": [
+                      {
+                        "repr": "Vault",
+                        "kind": "typeRef",
+                        "value": {
+                          "typeName": "Vault",
+                          "resolution": {
+                            "kind": "import",
+                            "specifier": "./types.ts",
+                            "name": "Vault"
+                          }
+                        }
+                      }
+                    ],
+                    "typeName": "Promise"
+                  }
+                },
+                "hasBody": true,
+                "isAsync": true
+              }
+            }
+          ]
+        },
+        {
+          "name": "createCacheAdapterMemory",
+          "declarations": [
+            {
+              "location": {
+                "filename": "src/adapters/CacheAdaptorMemory.ts",
+                "line": 79,
+                "col": 13,
+                "byteIndex": 2193
+              },
+              "declarationKind": "export",
+              "kind": "function",
+              "def": {
+                "params": [],
+                "returnType": {
+                  "repr": "CacheAdapter",
+                  "kind": "typeRef",
+                  "value": {
+                    "typeName": "CacheAdapter",
+                    "resolution": {
+                      "kind": "import",
+                      "specifier": "../types.ts",
+                      "name": "CacheAdapter"
+                    }
+                  }
+                },
+                "hasBody": true
+              }
+            }
+          ]
+        },
+        {
+          "name": "Transformers",
+          "declarations": [
+            {
+              "location": {
+                "filename": "src/transform/index.ts",
+                "line": 4,
+                "col": 13,
+                "byteIndex": 131
+              },
+              "declarationKind": "export",
+              "kind": "variable",
+              "def": {
+                "tsType": {
+                  "kind": "typeLiteral",
+                  "value": {
+                    "properties": [
+                      {
+                        "name": "transformCode",
+                        "location": {
+                          "filename": "src/transform/index.ts",
+                          "line": 5,
+                          "col": 2,
+                          "byteIndex": 150
+                        }
+                      },
+                      {
+                        "name": "getFileMeta",
+                        "location": {
+                          "filename": "src/transform/index.ts",
+                          "line": 6,
+                          "col": 2,
+                          "byteIndex": 185
+                        }
+                      }
+                    ]
+                  }
+                },
+                "kind": "const"
+              }
+            }
+          ]
+        },
+        {
+          "name": "isLeaf",
+          "declarations": [
+            {
+              "location": {
+                "filename": "src/parsers/markdown/MdastNode.ts",
+                "line": 167,
+                "col": 13,
+                "byteIndex": 2293
+              },
+              "declarationKind": "export",
+              "kind": "function",
+              "def": {
+                "params": [
+                  {
+                    "kind": "identifier",
+                    "name": "node",
+                    "optional": false,
+                    "tsType": {
+                      "repr": "MdastNode",
+                      "kind": "typeRef",
+                      "value": {
+                        "typeName": "MdastNode",
+                        "resolution": {
+                          "kind": "local"
+                        }
+                      }
+                    }
+                  }
+                ],
+                "returnType": {
+                  "repr": "node is Leaf",
+                  "kind": "typePredicate",
+                  "value": {
+                    "param": {
+                      "type": "identifier",
+                      "name": "node"
+                    },
+                    "type": {
+                      "repr": "Leaf",
+                      "kind": "typeRef",
+                      "value": {
+                        "typeName": "Leaf",
+                        "resolution": {
+                          "kind": "local"
+                        }
+                      }
+                    }
+                  }
+                },
+                "hasBody": true
+              }
+            }
+          ]
+        },
+        {
+          "name": "Vault",
+          "declarations": [
+            {
+              "location": {
+                "filename": "src/types.ts",
+                "line": 9,
+                "col": 0,
+                "byteIndex": 201
+              },
+              "declarationKind": "export",
+              "jsDoc": {
+                "doc": "VAULTS"
+              },
+              "kind": "interface",
+              "def": {
+                "properties": [
+                  {
+                    "name": "all",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 10,
+                      "col": 2,
+                      "byteIndex": 228
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "kind": "array",
+                                "value": {
+                                  "repr": "FileMeta",
+                                  "kind": "typeRef",
+                                  "value": {
+                                    "typeName": "FileMeta",
+                                    "resolution": {
+                                      "kind": "local"
+                                    }
+                                  }
+                                }
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": []
+                      }
+                    }
+                  },
+                  {
+                    "name": "createModel",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 12,
+                      "col": 2,
+                      "byteIndex": 263
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Model",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "repr": "FrontmatterTy",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "FrontmatterTy",
+                                  "resolution": {
+                                    "kind": "typeParam"
+                                  }
+                                }
+                              }
+                            ],
+                            "typeName": "Model",
+                            "resolution": {
+                              "kind": "local"
+                            }
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "type",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          },
+                          {
+                            "kind": "identifier",
+                            "name": "schema",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "z.ZodType",
+                              "kind": "typeRef",
+                              "value": {
+                                "typeParams": [
+                                  {
+                                    "repr": "FrontmatterTy",
+                                    "kind": "typeRef",
+                                    "value": {
+                                      "typeName": "FrontmatterTy",
+                                      "resolution": {
+                                        "kind": "typeParam"
+                                      }
+                                    }
+                                  }
+                                ],
+                                "typeName": "z.ZodType",
+                                "resolution": {
+                                  "kind": "import",
+                                  "specifier": "@zod/zod"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "typeParams": [
+                          {
+                            "name": "FrontmatterTy",
+                            "constraint": {
+                              "repr": "Frontmatter",
+                              "kind": "typeRef",
+                              "value": {
+                                "typeName": "Frontmatter",
+                                "resolution": {
+                                  "kind": "local"
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "getContent",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 17,
+                      "col": 2,
+                      "byteIndex": 401
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "kind": "union",
+                                "value": [
+                                  {
+                                    "repr": "Root",
+                                    "kind": "typeRef",
+                                    "value": {
+                                      "typeName": "Root",
+                                      "resolution": {
+                                        "kind": "import",
+                                        "specifier": "./parsers/markdown/MdastNode.ts",
+                                        "name": "Root"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "repr": "null",
+                                    "kind": "keyword",
+                                    "value": "null"
+                                  }
+                                ]
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "slug",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "getText",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 19,
+                      "col": 2,
+                      "byteIndex": 456
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "kind": "union",
+                                "value": [
+                                  {
+                                    "repr": "string",
+                                    "kind": "keyword",
+                                    "value": "string"
+                                  },
+                                  {
+                                    "repr": "null",
+                                    "kind": "keyword",
+                                    "value": "null"
+                                  }
+                                ]
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "slug",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "attachment",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 21,
+                      "col": 2,
+                      "byteIndex": 510
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "kind": "union",
+                                "value": [
+                                  {
+                                    "repr": "Blob",
+                                    "kind": "typeRef",
+                                    "value": {
+                                      "typeName": "Blob"
+                                    }
+                                  },
+                                  {
+                                    "repr": "null",
+                                    "kind": "keyword",
+                                    "value": "null"
+                                  }
+                                ]
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "slug",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          },
+                          {
+                            "kind": "identifier",
+                            "name": "width",
+                            "optional": true,
+                            "tsType": {
+                              "repr": "number",
+                              "kind": "keyword",
+                              "value": "number"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "cacheAttachments",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 23,
+                      "col": 2,
+                      "byteIndex": 581
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "repr": "void",
+                                "kind": "keyword",
+                                "value": "void"
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "widths",
+                            "optional": false,
+                            "tsType": {
+                              "kind": "array",
+                              "value": {
+                                "repr": "number",
+                                "kind": "keyword",
+                                "value": "number"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "search",
+                    "jsDoc": {
+                      "doc": "Get original file contents\n  getMd: (slug: string) => Promise<string>;\nGet contents as HTML\n  getHtml: (slug: string) => Promise<string>;"
+                    },
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 32,
+                      "col": 2,
+                      "byteIndex": 798
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "kind": "array",
+                                "value": {
+                                  "repr": "SearchHit",
+                                  "kind": "typeRef",
+                                  "value": {
+                                    "typeName": "SearchHit",
+                                    "resolution": {
+                                      "kind": "local"
+                                    }
+                                  }
+                                }
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "query",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          },
+                          {
+                            "kind": "identifier",
+                            "name": "options",
+                            "optional": true,
+                            "tsType": {
+                              "repr": "SearchOptions",
+                              "kind": "typeRef",
+                              "value": {
+                                "typeName": "SearchOptions",
+                                "resolution": {
+                                  "kind": "local"
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "OpenVaultOptions",
+          "declarations": [
+            {
+              "location": {
+                "filename": "src/types.ts",
+                "line": 35,
+                "col": 0,
+                "byteIndex": 875
+              },
+              "declarationKind": "export",
+              "kind": "interface",
+              "def": {
+                "properties": [
+                  {
+                    "name": "path",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 39,
+                      "col": 2,
+                      "byteIndex": 962
+                    },
+                    "tsType": {
+                      "repr": "string",
+                      "kind": "keyword",
+                      "value": "string"
+                    }
+                  },
+                  {
+                    "name": "log",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 40,
+                      "col": 2,
+                      "byteIndex": 978
+                    },
+                    "optional": true,
+                    "tsType": {
+                      "kind": "union",
+                      "value": [
+                        {
+                          "repr": "build",
+                          "kind": "literal",
+                          "value": {
+                            "kind": "string",
+                            "string": "build"
+                          }
+                        },
+                        {
+                          "repr": "warn",
+                          "kind": "literal",
+                          "value": {
+                            "kind": "string",
+                            "string": "warn"
+                          }
+                        },
+                        {
+                          "repr": "silent",
+                          "kind": "literal",
+                          "value": {
+                            "kind": "string",
+                            "string": "silent"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "cacheAdapter",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 41,
+                      "col": 2,
+                      "byteIndex": 1015
+                    },
+                    "optional": true,
+                    "tsType": {
+                      "repr": "CacheAdapter",
+                      "kind": "typeRef",
+                      "value": {
+                        "typeName": "CacheAdapter",
+                        "resolution": {
+                          "kind": "local"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "name": "attachmentCachePath",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 42,
+                      "col": 2,
+                      "byteIndex": 1046
+                    },
+                    "optional": true,
+                    "tsType": {
+                      "kind": "union",
+                      "value": [
+                        {
+                          "repr": "string",
+                          "kind": "keyword",
+                          "value": "string"
+                        },
+                        {
+                          "repr": "null",
+                          "kind": "keyword",
+                          "value": "null"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "transformers",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 43,
+                      "col": 2,
+                      "byteIndex": 1085
+                    },
+                    "optional": true,
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "kind": "array",
+                          "value": {
+                            "repr": "Transformer",
+                            "kind": "typeRef",
+                            "value": {
+                              "typeName": "Transformer",
+                              "resolution": {
+                                "kind": "local"
+                              }
+                            }
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "defaultTransformers",
+                            "optional": false,
+                            "tsType": {
+                              "kind": "array",
+                              "value": {
+                                "repr": "Transformer",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Transformer",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "SearchOptions",
+          "declarations": [
+            {
+              "location": {
+                "filename": "src/types.ts",
+                "line": 46,
+                "col": 0,
+                "byteIndex": 1158
+              },
+              "declarationKind": "export",
+              "kind": "interface",
+              "def": {
+                "properties": [
+                  {
+                    "name": "limit",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 47,
+                      "col": 2,
+                      "byteIndex": 1193
+                    },
+                    "optional": true,
+                    "tsType": {
+                      "repr": "number",
+                      "kind": "keyword",
+                      "value": "number"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "FileMeta",
+          "declarations": [
+            {
+              "location": {
+                "filename": "src/types.ts",
+                "line": 50,
+                "col": 0,
+                "byteIndex": 1212
+              },
+              "declarationKind": "export",
+              "kind": "interface",
+              "def": {
+                "properties": [
+                  {
+                    "name": "slug",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 51,
+                      "col": 2,
+                      "byteIndex": 1242
+                    },
+                    "tsType": {
+                      "repr": "string",
+                      "kind": "keyword",
+                      "value": "string"
+                    }
+                  },
+                  {
+                    "name": "title",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 52,
+                      "col": 2,
+                      "byteIndex": 1258
+                    },
+                    "tsType": {
+                      "repr": "string",
+                      "kind": "keyword",
+                      "value": "string"
+                    }
+                  },
+                  {
+                    "name": "type",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 53,
+                      "col": 2,
+                      "byteIndex": 1275
+                    },
+                    "tsType": {
+                      "repr": "string",
+                      "kind": "keyword",
+                      "value": "string"
+                    }
+                  },
+                  {
+                    "name": "checksum",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 54,
+                      "col": 2,
+                      "byteIndex": 1291
+                    },
+                    "tsType": {
+                      "repr": "string",
+                      "kind": "keyword",
+                      "value": "string"
+                    }
+                  },
+                  {
+                    "name": "file",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 55,
+                      "col": 2,
+                      "byteIndex": 1311
+                    },
+                    "tsType": {
+                      "repr": "FileEntry",
+                      "kind": "typeRef",
+                      "value": {
+                        "typeName": "FileEntry",
+                        "resolution": {
+                          "kind": "import",
+                          "specifier": "./disk/deno.ts",
+                          "name": "FileEntry"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "SearchHit",
+          "declarations": [
+            {
+              "location": {
+                "filename": "src/types.ts",
+                "line": 58,
+                "col": 0,
+                "byteIndex": 1331
+              },
+              "declarationKind": "export",
+              "kind": "interface",
+              "def": {
+                "properties": [
+                  {
+                    "name": "slug",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 59,
+                      "col": 2,
+                      "byteIndex": 1362
+                    },
+                    "tsType": {
+                      "repr": "string",
+                      "kind": "keyword",
+                      "value": "string"
+                    }
+                  },
+                  {
+                    "name": "title",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 60,
+                      "col": 2,
+                      "byteIndex": 1378
+                    },
+                    "tsType": {
+                      "repr": "string",
+                      "kind": "keyword",
+                      "value": "string"
+                    }
+                  },
+                  {
+                    "name": "type",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 61,
+                      "col": 2,
+                      "byteIndex": 1395
+                    },
+                    "tsType": {
+                      "repr": "string",
+                      "kind": "keyword",
+                      "value": "string"
+                    }
+                  },
+                  {
+                    "name": "blocks",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 62,
+                      "col": 2,
+                      "byteIndex": 1411
+                    },
+                    "optional": true,
+                    "tsType": {
+                      "kind": "array",
+                      "value": {
+                        "repr": "number",
+                        "kind": "keyword",
+                        "value": "number"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Model",
+          "declarations": [
+            {
+              "location": {
+                "filename": "src/types.ts",
+                "line": 69,
+                "col": 0,
+                "byteIndex": 1452
+              },
+              "declarationKind": "export",
+              "jsDoc": {
+                "doc": "MODELS"
+              },
+              "kind": "interface",
+              "def": {
+                "properties": [
+                  {
+                    "name": "all",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 70,
+                      "col": 2,
+                      "byteIndex": 1514
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "repr": "Array",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeParams": [
+                                    {
+                                      "kind": "typeLiteral",
+                                      "value": {
+                                        "properties": [
+                                          {
+                                            "name": "title",
+                                            "location": {
+                                              "filename": "src/types.ts",
+                                              "line": 72,
+                                              "col": 6,
+                                              "byteIndex": 1552
+                                            },
+                                            "tsType": {
+                                              "repr": "string",
+                                              "kind": "keyword",
+                                              "value": "string"
+                                            }
+                                          },
+                                          {
+                                            "name": "slug",
+                                            "location": {
+                                              "filename": "src/types.ts",
+                                              "line": 73,
+                                              "col": 6,
+                                              "byteIndex": 1573
+                                            },
+                                            "tsType": {
+                                              "repr": "string",
+                                              "kind": "keyword",
+                                              "value": "string"
+                                            }
+                                          },
+                                          {
+                                            "name": "frontmatter",
+                                            "location": {
+                                              "filename": "src/types.ts",
+                                              "line": 74,
+                                              "col": 6,
+                                              "byteIndex": 1593
+                                            },
+                                            "tsType": {
+                                              "repr": "FrontmatterTy",
+                                              "kind": "typeRef",
+                                              "value": {
+                                                "typeName": "FrontmatterTy",
+                                                "resolution": {
+                                                  "kind": "typeParam",
+                                                  "declaringName": "Model",
+                                                  "declaringKind": "interface"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  "typeName": "Array"
+                                }
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": []
+                      }
+                    }
+                  },
+                  {
+                    "name": "get",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 78,
+                      "col": 2,
+                      "byteIndex": 1636
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "kind": "union",
+                                "value": [
+                                  {
+                                    "kind": "typeLiteral",
+                                    "value": {
+                                      "properties": [
+                                        {
+                                          "name": "title",
+                                          "location": {
+                                            "filename": "src/types.ts",
+                                            "line": 79,
+                                            "col": 4,
+                                            "byteIndex": 1673
+                                          },
+                                          "tsType": {
+                                            "repr": "string",
+                                            "kind": "keyword",
+                                            "value": "string"
+                                          }
+                                        },
+                                        {
+                                          "name": "slug",
+                                          "location": {
+                                            "filename": "src/types.ts",
+                                            "line": 80,
+                                            "col": 4,
+                                            "byteIndex": 1692
+                                          },
+                                          "tsType": {
+                                            "repr": "string",
+                                            "kind": "keyword",
+                                            "value": "string"
+                                          }
+                                        },
+                                        {
+                                          "name": "frontmatter",
+                                          "location": {
+                                            "filename": "src/types.ts",
+                                            "line": 81,
+                                            "col": 4,
+                                            "byteIndex": 1710
+                                          },
+                                          "tsType": {
+                                            "repr": "FrontmatterTy",
+                                            "kind": "typeRef",
+                                            "value": {
+                                              "typeName": "FrontmatterTy",
+                                              "resolution": {
+                                                "kind": "typeParam",
+                                                "declaringName": "Model",
+                                                "declaringKind": "interface"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "repr": "null",
+                                    "kind": "keyword",
+                                    "value": "null"
+                                  }
+                                ]
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "slug",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "getContent",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 84,
+                      "col": 2,
+                      "byteIndex": 1754
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "kind": "union",
+                                "value": [
+                                  {
+                                    "repr": "Root",
+                                    "kind": "typeRef",
+                                    "value": {
+                                      "typeName": "Root",
+                                      "resolution": {
+                                        "kind": "import",
+                                        "specifier": "./parsers/markdown/MdastNode.ts",
+                                        "name": "Root"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "repr": "null",
+                                    "kind": "keyword",
+                                    "value": "null"
+                                  }
+                                ]
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "slug",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "getText",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 86,
+                      "col": 2,
+                      "byteIndex": 1809
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "kind": "union",
+                                "value": [
+                                  {
+                                    "repr": "string",
+                                    "kind": "keyword",
+                                    "value": "string"
+                                  },
+                                  {
+                                    "repr": "null",
+                                    "kind": "keyword",
+                                    "value": "null"
+                                  }
+                                ]
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "slug",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "search",
+                    "jsDoc": {
+                      "doc": "Get original file contents\n  getMd: (slug: string) => Promise<string>;\nGet contents as HTML\n  getHtml: (slug: string) => Promise<string>;\n\n  getAttachment"
+                    },
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 97,
+                      "col": 2,
+                      "byteIndex": 2038
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "kind": "array",
+                                "value": {
+                                  "repr": "SearchHit",
+                                  "kind": "typeRef",
+                                  "value": {
+                                    "typeName": "SearchHit",
+                                    "resolution": {
+                                      "kind": "local"
+                                    }
+                                  }
+                                }
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "query",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          },
+                          {
+                            "kind": "identifier",
+                            "name": "options",
+                            "optional": true,
+                            "tsType": {
+                              "repr": "SearchOptions",
+                              "kind": "typeRef",
+                              "value": {
+                                "typeName": "SearchOptions",
+                                "resolution": {
+                                  "kind": "local"
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "typeParams": [
+                  {
+                    "name": "FrontmatterTy",
+                    "constraint": {
+                      "repr": "Frontmatter",
+                      "kind": "typeRef",
+                      "value": {
+                        "typeName": "Frontmatter",
+                        "resolution": {
+                          "kind": "local"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Frontmatter",
+          "declarations": [
+            {
+              "location": {
+                "filename": "src/types.ts",
+                "line": 101,
+                "col": 0,
+                "byteIndex": 2190
+              },
+              "declarationKind": "export",
+              "kind": "typeAlias",
+              "def": {
+                "tsType": {
+                  "repr": "Record",
+                  "kind": "typeRef",
+                  "value": {
+                    "typeParams": [
+                      {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "value": "string"
+                      },
+                      {
+                        "kind": "union",
+                        "value": [
+                          {
+                            "repr": "string",
+                            "kind": "keyword",
+                            "value": "string"
+                          },
+                          {
+                            "repr": "number",
+                            "kind": "keyword",
+                            "value": "number"
+                          },
+                          {
+                            "repr": "boolean",
+                            "kind": "keyword",
+                            "value": "boolean"
+                          },
+                          {
+                            "repr": "Date",
+                            "kind": "typeRef",
+                            "value": {
+                              "typeName": "Date"
+                            }
+                          },
+                          {
+                            "repr": "null",
+                            "kind": "keyword",
+                            "value": "null"
+                          },
+                          {
+                            "repr": "undefined",
+                            "kind": "keyword",
+                            "value": "undefined"
+                          }
+                        ]
+                      }
+                    ],
+                    "typeName": "Record"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "MdastRootTy",
+          "declarations": [
+            {
+              "location": {
+                "filename": "src/parsers/markdown/MdastNode.ts",
+                "line": 5,
+                "col": 0,
+                "byteIndex": 60
+              },
+              "declarationKind": "export",
+              "jsDoc": {
+                "doc": "Root"
+              },
+              "kind": "interface",
+              "def": {
+                "properties": [
+                  {
+                    "name": "type",
+                    "location": {
+                      "filename": "src/parsers/markdown/MdastNode.ts",
+                      "line": 6,
+                      "col": 2,
+                      "byteIndex": 86
+                    },
+                    "tsType": {
+                      "repr": "root",
+                      "kind": "literal",
+                      "value": {
+                        "kind": "string",
+                        "string": "root"
+                      }
+                    }
+                  },
+                  {
+                    "name": "children",
+                    "location": {
+                      "filename": "src/parsers/markdown/MdastNode.ts",
+                      "line": 7,
+                      "col": 2,
+                      "byteIndex": 102
+                    },
+                    "tsType": {
+                      "kind": "array",
+                      "value": {
+                        "repr": "Block",
+                        "kind": "typeRef",
+                        "value": {
+                          "typeName": "Block",
+                          "resolution": {
+                            "kind": "local"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Transformer",
+          "declarations": [
+            {
+              "location": {
+                "filename": "src/types.ts",
+                "line": 113,
+                "col": 0,
+                "byteIndex": 2444
+              },
+              "declarationKind": "export",
+              "kind": "typeAlias",
+              "def": {
+                "tsType": {
+                  "kind": "fnOrConstructor",
+                  "value": {
+                    "constructor": false,
+                    "tsType": {
+                      "kind": "union",
+                      "value": [
+                        {
+                          "kind": "typeLiteral",
+                          "value": {
+                            "properties": [
+                              {
+                                "name": "key",
+                                "location": {
+                                  "filename": "src/types.ts",
+                                  "line": 115,
+                                  "col": 6,
+                                  "byteIndex": 2515
+                                },
+                                "tsType": {
+                                  "repr": "string",
+                                  "kind": "keyword",
+                                  "value": "string"
+                                }
+                              },
+                              {
+                                "name": "transform",
+                                "location": {
+                                  "filename": "src/types.ts",
+                                  "line": 116,
+                                  "col": 6,
+                                  "byteIndex": 2534
+                                },
+                                "tsType": {
+                                  "kind": "fnOrConstructor",
+                                  "value": {
+                                    "constructor": false,
+                                    "tsType": {
+                                      "kind": "union",
+                                      "value": [
+                                        {
+                                          "repr": "Promise",
+                                          "kind": "typeRef",
+                                          "value": {
+                                            "typeParams": [
+                                              {
+                                                "kind": "union",
+                                                "value": [
+                                                  {
+                                                    "repr": "MdastNodeTy.MdastNode",
+                                                    "kind": "typeRef",
+                                                    "value": {
+                                                      "typeName": "MdastNodeTy.MdastNode",
+                                                      "resolution": {
+                                                        "kind": "import",
+                                                        "specifier": "./parsers/index.ts",
+                                                        "name": "MdastNodeTy"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "repr": "false",
+                                                    "kind": "literal",
+                                                    "value": {
+                                                      "kind": "boolean",
+                                                      "boolean": false
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            ],
+                                            "typeName": "Promise"
+                                          }
+                                        },
+                                        {
+                                          "repr": "MdastNodeTy.MdastNode",
+                                          "kind": "typeRef",
+                                          "value": {
+                                            "typeName": "MdastNodeTy.MdastNode",
+                                            "resolution": {
+                                              "kind": "import",
+                                              "specifier": "./parsers/index.ts",
+                                              "name": "MdastNodeTy"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "repr": "false",
+                                          "kind": "literal",
+                                          "value": {
+                                            "kind": "boolean",
+                                            "boolean": false
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "params": [
+                                      {
+                                        "kind": "identifier",
+                                        "name": "getDataFromTitle",
+                                        "optional": false,
+                                        "tsType": {
+                                          "kind": "fnOrConstructor",
+                                          "value": {
+                                            "constructor": false,
+                                            "tsType": {
+                                              "repr": "Promise",
+                                              "kind": "typeRef",
+                                              "value": {
+                                                "typeParams": [
+                                                  {
+                                                    "kind": "union",
+                                                    "value": [
+                                                      {
+                                                        "repr": "FileMeta",
+                                                        "kind": "typeRef",
+                                                        "value": {
+                                                          "typeName": "FileMeta",
+                                                          "resolution": {
+                                                            "kind": "local"
+                                                          }
+                                                        }
+                                                      },
+                                                      {
+                                                        "repr": "null",
+                                                        "kind": "keyword",
+                                                        "value": "null"
+                                                      }
+                                                    ]
+                                                  }
+                                                ],
+                                                "typeName": "Promise"
+                                              }
+                                            },
+                                            "params": [
+                                              {
+                                                "kind": "identifier",
+                                                "name": "title",
+                                                "optional": false,
+                                                "tsType": {
+                                                  "repr": "string",
+                                                  "kind": "keyword",
+                                                  "value": "string"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "repr": "false",
+                          "kind": "literal",
+                          "value": {
+                            "kind": "boolean",
+                            "boolean": false
+                          }
+                        }
+                      ]
+                    },
+                    "params": [
+                      {
+                        "kind": "identifier",
+                        "name": "node",
+                        "optional": false,
+                        "tsType": {
+                          "repr": "MdastNodeTy.MdastNode",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeName": "MdastNodeTy.MdastNode",
+                            "resolution": {
+                              "kind": "import",
+                              "specifier": "./parsers/index.ts",
+                              "name": "MdastNodeTy"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "CacheAdapter",
+          "declarations": [
+            {
+              "location": {
+                "filename": "src/types.ts",
+                "line": 129,
+                "col": 0,
+                "byteIndex": 2771
+              },
+              "declarationKind": "export",
+              "jsDoc": {
+                "doc": "CACHE ADAPTER"
+              },
+              "kind": "interface",
+              "def": {
+                "properties": [
+                  {
+                    "name": "listAll",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 130,
+                      "col": 2,
+                      "byteIndex": 2805
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "repr": "Array",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeParams": [
+                                    {
+                                      "kind": "tuple",
+                                      "value": [
+                                        {
+                                          "repr": "string",
+                                          "kind": "keyword",
+                                          "value": "string"
+                                        },
+                                        {
+                                          "repr": "string",
+                                          "kind": "keyword",
+                                          "value": "string"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "typeName": "Array"
+                                }
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": []
+                      }
+                    }
+                  },
+                  {
+                    "name": "list",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 131,
+                      "col": 2,
+                      "byteIndex": 2856
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "kind": "array",
+                                "value": {
+                                  "repr": "string",
+                                  "kind": "keyword",
+                                  "value": "string"
+                                }
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "type",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "listValues",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 132,
+                      "col": 2,
+                      "byteIndex": 2901
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "kind": "array",
+                                "value": {
+                                  "repr": "ModelTy",
+                                  "kind": "typeRef",
+                                  "value": {
+                                    "typeName": "ModelTy",
+                                    "resolution": {
+                                      "kind": "typeParam"
+                                    }
+                                  }
+                                }
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "type",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          }
+                        ],
+                        "typeParams": [
+                          {
+                            "name": "ModelTy"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "get",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 133,
+                      "col": 2,
+                      "byteIndex": 2962
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "kind": "union",
+                                "value": [
+                                  {
+                                    "repr": "ModelTy",
+                                    "kind": "typeRef",
+                                    "value": {
+                                      "typeName": "ModelTy",
+                                      "resolution": {
+                                        "kind": "typeParam"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "repr": "null",
+                                    "kind": "keyword",
+                                    "value": "null"
+                                  }
+                                ]
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "type",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          },
+                          {
+                            "kind": "identifier",
+                            "name": "key",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          }
+                        ],
+                        "typeParams": [
+                          {
+                            "name": "ModelTy"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "set",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 134,
+                      "col": 2,
+                      "byteIndex": 3034
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "repr": "void",
+                                "kind": "keyword",
+                                "value": "void"
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "type",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          },
+                          {
+                            "kind": "identifier",
+                            "name": "key",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          },
+                          {
+                            "kind": "identifier",
+                            "name": "value",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "ModelTy",
+                              "kind": "typeRef",
+                              "value": {
+                                "typeName": "ModelTy",
+                                "resolution": {
+                                  "kind": "typeParam"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "typeParams": [
+                          {
+                            "name": "ModelTy"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "deleteAll",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 135,
+                      "col": 2,
+                      "byteIndex": 3112
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "repr": "void",
+                                "kind": "keyword",
+                                "value": "void"
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "type",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "delete",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 136,
+                      "col": 2,
+                      "byteIndex": 3158
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "repr": "void",
+                                "kind": "keyword",
+                                "value": "void"
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": [
+                          {
+                            "kind": "identifier",
+                            "name": "type",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          },
+                          {
+                            "kind": "identifier",
+                            "name": "key",
+                            "optional": false,
+                            "tsType": {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "value": "string"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "purge",
+                    "location": {
+                      "filename": "src/types.ts",
+                      "line": 137,
+                      "col": 2,
+                      "byteIndex": 3214
+                    },
+                    "tsType": {
+                      "kind": "fnOrConstructor",
+                      "value": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "Promise",
+                          "kind": "typeRef",
+                          "value": {
+                            "typeParams": [
+                              {
+                                "repr": "void",
+                                "kind": "keyword",
+                                "value": "void"
+                              }
+                            ],
+                            "typeName": "Promise"
+                          }
+                        },
+                        "params": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "MdastNodeTy",
+          "declarations": [
+            {
+              "location": {
+                "filename": "src/parsers/markdown/index.ts",
+                "line": 5,
+                "col": 7,
+                "byteIndex": 165
+              },
+              "declarationKind": "export",
+              "kind": "namespace",
+              "def": {
+                "elements": [
+                  {
+                    "name": "Root",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/index.ts",
+                          "line": 5,
+                          "col": 7,
+                          "byteIndex": 165
+                        },
+                        "declarationKind": "export",
+                        "jsDoc": {
+                          "doc": "Root"
+                        },
+                        "kind": "reference",
+                        "def": {
+                          "target": {
+                            "filename": "src/parsers/markdown/MdastNode.ts",
+                            "line": 5,
+                            "col": 0,
+                            "byteIndex": 60
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Yaml",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 13,
+                          "col": 0,
+                          "byteIndex": 142
+                        },
+                        "declarationKind": "export",
+                        "jsDoc": {
+                          "doc": "BLOCKS"
+                        },
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 14,
+                                "col": 2,
+                                "byteIndex": 168
+                              },
+                              "tsType": {
+                                "repr": "yaml",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "yaml"
+                                }
+                              }
+                            },
+                            {
+                              "name": "value",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 15,
+                                "col": 2,
+                                "byteIndex": 184
+                              },
+                              "tsType": {
+                                "repr": "string",
+                                "kind": "keyword",
+                                "value": "string"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Heading",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 18,
+                          "col": 0,
+                          "byteIndex": 202
+                        },
+                        "declarationKind": "export",
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 19,
+                                "col": 2,
+                                "byteIndex": 231
+                              },
+                              "tsType": {
+                                "repr": "heading",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "heading"
+                                }
+                              }
+                            },
+                            {
+                              "name": "depth",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 20,
+                                "col": 2,
+                                "byteIndex": 250
+                              },
+                              "tsType": {
+                                "repr": "number",
+                                "kind": "keyword",
+                                "value": "number"
+                              }
+                            },
+                            {
+                              "name": "children",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 21,
+                                "col": 2,
+                                "byteIndex": 267
+                              },
+                              "tsType": {
+                                "kind": "array",
+                                "value": {
+                                  "repr": "Inline",
+                                  "kind": "typeRef",
+                                  "value": {
+                                    "typeName": "Inline",
+                                    "resolution": {
+                                      "kind": "local"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Paragraph",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 24,
+                          "col": 0,
+                          "byteIndex": 290
+                        },
+                        "declarationKind": "export",
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 25,
+                                "col": 2,
+                                "byteIndex": 321
+                              },
+                              "tsType": {
+                                "repr": "paragraph",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "paragraph"
+                                }
+                              }
+                            },
+                            {
+                              "name": "children",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 26,
+                                "col": 2,
+                                "byteIndex": 342
+                              },
+                              "tsType": {
+                                "kind": "array",
+                                "value": {
+                                  "repr": "Inline",
+                                  "kind": "typeRef",
+                                  "value": {
+                                    "typeName": "Inline",
+                                    "resolution": {
+                                      "kind": "local"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "List",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 29,
+                          "col": 0,
+                          "byteIndex": 365
+                        },
+                        "declarationKind": "export",
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 30,
+                                "col": 2,
+                                "byteIndex": 391
+                              },
+                              "tsType": {
+                                "repr": "list",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "list"
+                                }
+                              }
+                            },
+                            {
+                              "name": "ordered",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 31,
+                                "col": 2,
+                                "byteIndex": 407
+                              },
+                              "tsType": {
+                                "repr": "boolean",
+                                "kind": "keyword",
+                                "value": "boolean"
+                              }
+                            },
+                            {
+                              "name": "children",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 32,
+                                "col": 2,
+                                "byteIndex": 427
+                              },
+                              "tsType": {
+                                "repr": "Array",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeParams": [
+                                    {
+                                      "repr": "ListItem",
+                                      "kind": "typeRef",
+                                      "value": {
+                                        "typeName": "ListItem",
+                                        "resolution": {
+                                          "kind": "local"
+                                        }
+                                      }
+                                    }
+                                  ],
+                                  "typeName": "Array"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "ListItem",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 35,
+                          "col": 0,
+                          "byteIndex": 457
+                        },
+                        "declarationKind": "export",
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 36,
+                                "col": 2,
+                                "byteIndex": 487
+                              },
+                              "tsType": {
+                                "repr": "listItem",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "listItem"
+                                }
+                              }
+                            },
+                            {
+                              "name": "children",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 37,
+                                "col": 2,
+                                "byteIndex": 507
+                              },
+                              "tsType": {
+                                "kind": "tuple",
+                                "value": [
+                                  {
+                                    "kind": "union",
+                                    "value": [
+                                      {
+                                        "repr": "Paragraph",
+                                        "kind": "typeRef",
+                                        "value": {
+                                          "typeName": "Paragraph",
+                                          "resolution": {
+                                            "kind": "local"
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "repr": "List",
+                                        "kind": "typeRef",
+                                        "value": {
+                                          "typeName": "List",
+                                          "resolution": {
+                                            "kind": "local"
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Blockquote",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 40,
+                          "col": 0,
+                          "byteIndex": 540
+                        },
+                        "declarationKind": "export",
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 41,
+                                "col": 2,
+                                "byteIndex": 572
+                              },
+                              "tsType": {
+                                "repr": "blockquote",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "blockquote"
+                                }
+                              }
+                            },
+                            {
+                              "name": "children",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 42,
+                                "col": 2,
+                                "byteIndex": 594
+                              },
+                              "tsType": {
+                                "kind": "array",
+                                "value": {
+                                  "repr": "Paragraph",
+                                  "kind": "typeRef",
+                                  "value": {
+                                    "typeName": "Paragraph",
+                                    "resolution": {
+                                      "kind": "local"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Lang",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 45,
+                          "col": 0,
+                          "byteIndex": 620
+                        },
+                        "declarationKind": "export",
+                        "kind": "typeAlias",
+                        "def": {
+                          "tsType": {
+                            "kind": "union",
+                            "value": [
+                              {
+                                "repr": "typescript",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "typescript"
+                                }
+                              },
+                              {
+                                "repr": "javascript",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "javascript"
+                                }
+                              },
+                              {
+                                "repr": "jsx",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "jsx"
+                                }
+                              },
+                              {
+                                "repr": "tsx",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "tsx"
+                                }
+                              },
+                              {
+                                "repr": "css",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "css"
+                                }
+                              },
+                              {
+                                "repr": "html",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "html"
+                                }
+                              },
+                              {
+                                "repr": "python",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "python"
+                                }
+                              },
+                              {
+                                "repr": "php",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "php"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Code",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 55,
+                          "col": 0,
+                          "byteIndex": 739
+                        },
+                        "declarationKind": "export",
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 56,
+                                "col": 2,
+                                "byteIndex": 765
+                              },
+                              "tsType": {
+                                "repr": "code",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "code"
+                                }
+                              }
+                            },
+                            {
+                              "name": "value",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 57,
+                                "col": 2,
+                                "byteIndex": 781
+                              },
+                              "tsType": {
+                                "repr": "string",
+                                "kind": "keyword",
+                                "value": "string"
+                              }
+                            },
+                            {
+                              "name": "lang",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 58,
+                                "col": 2,
+                                "byteIndex": 798
+                              },
+                              "tsType": {
+                                "repr": "Lang",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Lang",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "name": "html",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 59,
+                                "col": 2,
+                                "byteIndex": 812
+                              },
+                              "optional": true,
+                              "tsType": {
+                                "repr": "string",
+                                "kind": "keyword",
+                                "value": "string"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "ThematicBreak",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 62,
+                          "col": 0,
+                          "byteIndex": 830
+                        },
+                        "declarationKind": "export",
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 63,
+                                "col": 2,
+                                "byteIndex": 865
+                              },
+                              "tsType": {
+                                "repr": "thematicBreak",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "thematicBreak"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Block",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 66,
+                          "col": 0,
+                          "byteIndex": 891
+                        },
+                        "declarationKind": "export",
+                        "kind": "typeAlias",
+                        "def": {
+                          "tsType": {
+                            "kind": "union",
+                            "value": [
+                              {
+                                "repr": "Yaml",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Yaml",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Heading",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Heading",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Paragraph",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Paragraph",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Blockquote",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Blockquote",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "List",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "List",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "ListItem",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "ListItem",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Code",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Code",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "ThematicBreak",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "ThematicBreak",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Attachment",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Attachment",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Link",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 81,
+                          "col": 0,
+                          "byteIndex": 1055
+                        },
+                        "declarationKind": "export",
+                        "jsDoc": {
+                          "doc": "Inline and text"
+                        },
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 82,
+                                "col": 2,
+                                "byteIndex": 1081
+                              },
+                              "tsType": {
+                                "repr": "link",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "link"
+                                }
+                              }
+                            },
+                            {
+                              "name": "url",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 83,
+                                "col": 2,
+                                "byteIndex": 1097
+                              },
+                              "tsType": {
+                                "repr": "string",
+                                "kind": "keyword",
+                                "value": "string"
+                              }
+                            },
+                            {
+                              "name": "children",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 84,
+                                "col": 2,
+                                "byteIndex": 1112
+                              },
+                              "tsType": {
+                                "kind": "array",
+                                "value": {
+                                  "repr": "Inline",
+                                  "kind": "typeRef",
+                                  "value": {
+                                    "typeName": "Inline",
+                                    "resolution": {
+                                      "kind": "local"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "XLink",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 87,
+                          "col": 0,
+                          "byteIndex": 1135
+                        },
+                        "declarationKind": "export",
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 88,
+                                "col": 2,
+                                "byteIndex": 1162
+                              },
+                              "tsType": {
+                                "repr": "xlink",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "xlink"
+                                }
+                              }
+                            },
+                            {
+                              "name": "filename",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 89,
+                                "col": 2,
+                                "byteIndex": 1179
+                              },
+                              "tsType": {
+                                "repr": "string",
+                                "kind": "keyword",
+                                "value": "string"
+                              }
+                            },
+                            {
+                              "name": "children",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 90,
+                                "col": 2,
+                                "byteIndex": 1199
+                              },
+                              "tsType": {
+                                "kind": "array",
+                                "value": {
+                                  "repr": "Inline",
+                                  "kind": "typeRef",
+                                  "value": {
+                                    "typeName": "Inline",
+                                    "resolution": {
+                                      "kind": "local"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "name": "file",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 91,
+                                "col": 2,
+                                "byteIndex": 1221
+                              },
+                              "optional": true,
+                              "tsType": {
+                                "repr": "FileMeta",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "FileMeta",
+                                  "resolution": {
+                                    "kind": "import",
+                                    "specifier": "../../types.ts",
+                                    "name": "FileMeta"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Emphasis",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 94,
+                          "col": 0,
+                          "byteIndex": 1241
+                        },
+                        "declarationKind": "export",
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 95,
+                                "col": 2,
+                                "byteIndex": 1271
+                              },
+                              "tsType": {
+                                "repr": "emphasis",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "emphasis"
+                                }
+                              }
+                            },
+                            {
+                              "name": "children",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 96,
+                                "col": 2,
+                                "byteIndex": 1291
+                              },
+                              "tsType": {
+                                "kind": "array",
+                                "value": {
+                                  "repr": "Inline",
+                                  "kind": "typeRef",
+                                  "value": {
+                                    "typeName": "Inline",
+                                    "resolution": {
+                                      "kind": "local"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Strong",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 99,
+                          "col": 0,
+                          "byteIndex": 1314
+                        },
+                        "declarationKind": "export",
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 100,
+                                "col": 2,
+                                "byteIndex": 1342
+                              },
+                              "tsType": {
+                                "repr": "strong",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "strong"
+                                }
+                              }
+                            },
+                            {
+                              "name": "children",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 101,
+                                "col": 2,
+                                "byteIndex": 1360
+                              },
+                              "tsType": {
+                                "kind": "array",
+                                "value": {
+                                  "repr": "Inline",
+                                  "kind": "typeRef",
+                                  "value": {
+                                    "typeName": "Inline",
+                                    "resolution": {
+                                      "kind": "local"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Text",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 104,
+                          "col": 0,
+                          "byteIndex": 1383
+                        },
+                        "declarationKind": "export",
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 105,
+                                "col": 2,
+                                "byteIndex": 1409
+                              },
+                              "tsType": {
+                                "repr": "text",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "text"
+                                }
+                              }
+                            },
+                            {
+                              "name": "value",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 106,
+                                "col": 2,
+                                "byteIndex": 1425
+                              },
+                              "tsType": {
+                                "repr": "string",
+                                "kind": "keyword",
+                                "value": "string"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "InlineCode",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 109,
+                          "col": 0,
+                          "byteIndex": 1443
+                        },
+                        "declarationKind": "export",
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 110,
+                                "col": 2,
+                                "byteIndex": 1475
+                              },
+                              "tsType": {
+                                "repr": "inlineCode",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "inlineCode"
+                                }
+                              }
+                            },
+                            {
+                              "name": "value",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 111,
+                                "col": 2,
+                                "byteIndex": 1497
+                              },
+                              "tsType": {
+                                "repr": "string",
+                                "kind": "keyword",
+                                "value": "string"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Image",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 114,
+                          "col": 0,
+                          "byteIndex": 1515
+                        },
+                        "declarationKind": "export",
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 115,
+                                "col": 2,
+                                "byteIndex": 1542
+                              },
+                              "tsType": {
+                                "repr": "image",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "image"
+                                }
+                              }
+                            },
+                            {
+                              "name": "url",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 116,
+                                "col": 2,
+                                "byteIndex": 1559
+                              },
+                              "tsType": {
+                                "repr": "string",
+                                "kind": "keyword",
+                                "value": "string"
+                              }
+                            },
+                            {
+                              "name": "alt",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 117,
+                                "col": 2,
+                                "byteIndex": 1574
+                              },
+                              "tsType": {
+                                "repr": "string",
+                                "kind": "keyword",
+                                "value": "string"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Branch",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 120,
+                          "col": 0,
+                          "byteIndex": 1590
+                        },
+                        "declarationKind": "export",
+                        "kind": "typeAlias",
+                        "def": {
+                          "tsType": {
+                            "repr": "Paragraph",
+                            "kind": "typeRef",
+                            "value": {
+                              "typeName": "Paragraph",
+                              "resolution": {
+                                "kind": "local"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Attachment",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 122,
+                          "col": 0,
+                          "byteIndex": 1623
+                        },
+                        "declarationKind": "export",
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 123,
+                                "col": 2,
+                                "byteIndex": 1655
+                              },
+                              "tsType": {
+                                "repr": "attachment",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "attachment"
+                                }
+                              }
+                            },
+                            {
+                              "name": "filename",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 124,
+                                "col": 2,
+                                "byteIndex": 1677
+                              },
+                              "tsType": {
+                                "repr": "string",
+                                "kind": "keyword",
+                                "value": "string"
+                              }
+                            },
+                            {
+                              "name": "extension",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 125,
+                                "col": 2,
+                                "byteIndex": 1697
+                              },
+                              "tsType": {
+                                "repr": "string",
+                                "kind": "keyword",
+                                "value": "string"
+                              }
+                            },
+                            {
+                              "name": "alt",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 126,
+                                "col": 2,
+                                "byteIndex": 1718
+                              },
+                              "optional": true,
+                              "tsType": {
+                                "repr": "string",
+                                "kind": "keyword",
+                                "value": "string"
+                              }
+                            },
+                            {
+                              "name": "file",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 127,
+                                "col": 2,
+                                "byteIndex": 1734
+                              },
+                              "optional": true,
+                              "tsType": {
+                                "repr": "FileMeta",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "FileMeta",
+                                  "resolution": {
+                                    "kind": "import",
+                                    "specifier": "../../types.ts",
+                                    "name": "FileMeta"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Inline",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 130,
+                          "col": 0,
+                          "byteIndex": 1754
+                        },
+                        "declarationKind": "export",
+                        "kind": "typeAlias",
+                        "def": {
+                          "tsType": {
+                            "kind": "union",
+                            "value": [
+                              {
+                                "repr": "Link",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Link",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "XLink",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "XLink",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Image",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Image",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Attachment",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Attachment",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Shortcode",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Shortcode",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Emphasis",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Emphasis",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Strong",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Strong",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Text",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Text",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "InlineCode",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "InlineCode",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Shortcode",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 141,
+                          "col": 0,
+                          "byteIndex": 1883
+                        },
+                        "declarationKind": "export",
+                        "kind": "interface",
+                        "def": {
+                          "properties": [
+                            {
+                              "name": "type",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 142,
+                                "col": 2,
+                                "byteIndex": 1914
+                              },
+                              "tsType": {
+                                "repr": "shortcode",
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "string",
+                                  "string": "shortcode"
+                                }
+                              }
+                            },
+                            {
+                              "name": "name",
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 143,
+                                "col": 2,
+                                "byteIndex": 1935
+                              },
+                              "tsType": {
+                                "repr": "string",
+                                "kind": "keyword",
+                                "value": "string"
+                              }
+                            }
+                          ],
+                          "indexSignatures": [
+                            {
+                              "params": [
+                                {
+                                  "kind": "identifier",
+                                  "name": "key",
+                                  "optional": false,
+                                  "tsType": {
+                                    "repr": "string",
+                                    "kind": "keyword",
+                                    "value": "string"
+                                  }
+                                }
+                              ],
+                              "tsType": {
+                                "kind": "union",
+                                "value": [
+                                  {
+                                    "repr": "string",
+                                    "kind": "keyword",
+                                    "value": "string"
+                                  },
+                                  {
+                                    "repr": "undefined",
+                                    "kind": "keyword",
+                                    "value": "undefined"
+                                  }
+                                ]
+                              },
+                              "location": {
+                                "filename": "src/parsers/markdown/MdastNode.ts",
+                                "line": 144,
+                                "col": 2,
+                                "byteIndex": 1951
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Leaf",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 147,
+                          "col": 0,
+                          "byteIndex": 1989
+                        },
+                        "declarationKind": "export",
+                        "kind": "typeAlias",
+                        "def": {
+                          "tsType": {
+                            "kind": "union",
+                            "value": [
+                              {
+                                "repr": "Yaml",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Yaml",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "ThematicBreak",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "ThematicBreak",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Text",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Text",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Code",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Code",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "InlineCode",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "InlineCode",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Image",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Image",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Attachment",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Attachment",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Shortcode",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Shortcode",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "MdastNode",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 157,
+                          "col": 0,
+                          "byteIndex": 2109
+                        },
+                        "declarationKind": "export",
+                        "kind": "typeAlias",
+                        "def": {
+                          "tsType": {
+                            "kind": "union",
+                            "value": [
+                              {
+                                "repr": "Root",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Root",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Block",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Block",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Inline",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Inline",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Attachment",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Attachment",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Shortcode",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Shortcode",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "ParentOfText",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/MdastNode.ts",
+                          "line": 159,
+                          "col": 0,
+                          "byteIndex": 2182
+                        },
+                        "declarationKind": "export",
+                        "kind": "typeAlias",
+                        "def": {
+                          "tsType": {
+                            "kind": "union",
+                            "value": [
+                              {
+                                "repr": "Heading",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Heading",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Paragraph",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Paragraph",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Link",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Link",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "XLink",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "XLink",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Emphasis",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Emphasis",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              },
+                              {
+                                "repr": "Strong",
+                                "kind": "typeRef",
+                                "value": {
+                                  "typeName": "Strong",
+                                  "resolution": {
+                                    "kind": "local"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "isLeaf",
+                    "declarations": [
+                      {
+                        "location": {
+                          "filename": "src/parsers/markdown/index.ts",
+                          "line": 5,
+                          "col": 7,
+                          "byteIndex": 165
+                        },
+                        "declarationKind": "export",
+                        "kind": "reference",
+                        "def": {
+                          "target": {
+                            "filename": "src/parsers/markdown/MdastNode.ts",
+                            "line": 167,
+                            "col": 13,
+                            "byteIndex": 2293
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -9,7 +9,7 @@
   "lock": false,
   "tasks": {
     "test": "deno test -A --unstable-kv",
-    "docs": "deno doc --json ./src/mod.ts > denodoc/tree.json"
+    "docs": "sh scripts/docs.sh"
   },
   "lint": {
     "rules": {
@@ -33,5 +33,6 @@
     "unist-util-visit": "npm:unist-util-visit@^5.0.0",
     "prism-esm": "npm:prism-esm@^1.29.0-fix.6"
   },
-  "nodeModulesDir": "auto"
+  "nodeModulesDir": "auto",
+  "workspace": ["./www"]
 }
