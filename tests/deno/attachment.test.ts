@@ -2,7 +2,11 @@ import { openVault } from "@lps/volcano";
 import * as path from "@std/path";
 import { assert } from "@std/assert/assert";
 
+const TMP_DIR = path.join(Deno.cwd(), "tmp");
+
 Deno.test("get attachment", async () => {
+  await Deno.remove(TMP_DIR, { recursive: true }).catch(() => null);
+
   const vault = await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
     log: "silent",
@@ -11,21 +15,23 @@ Deno.test("get attachment", async () => {
   assert(data?.size);
 });
 
-const TMP_DIR = path.join(Deno.cwd(), "tmp");
-
 Deno.test("creates attachment cache folder when specified", async () => {
+  await Deno.remove(TMP_DIR, { recursive: true }).catch(() => null);
+
   await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
     attachmentCachePath: TMP_DIR,
     log: "silent",
   });
 
-  Deno.readDir(TMP_DIR);
+  await Deno.stat(TMP_DIR);
 
   await Deno.remove(TMP_DIR, { recursive: true });
 });
 
 Deno.test("writes variants to attachment cache", async () => {
+  await Deno.remove(TMP_DIR, { recursive: true }).catch(() => null);
+
   const vault = await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
     attachmentCachePath: TMP_DIR,
@@ -41,6 +47,8 @@ Deno.test("writes variants to attachment cache", async () => {
 });
 
 Deno.test("pre-caches all attachments if requested", async () => {
+  await Deno.remove(TMP_DIR, { recursive: true }).catch(() => null);
+
   const vault = await openVault({
     path: path.join(Deno.cwd(), "tests/data/blog"),
     log: "silent",

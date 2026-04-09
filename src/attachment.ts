@@ -44,7 +44,7 @@ export const AttachmentManager = (
 
   const cacheAttachments = async (widths: number[]) => {
     if (!attachmentCachePath) throw new Error("NoAttachmentCacheProvided");
-    await mkdir(attachmentCachePath, true);
+    await mkdir(attachmentCachePath);
     const files = await store.listValues<FileMeta>(FILE_TYPE);
 
     for (const file of files) {
@@ -52,7 +52,7 @@ export const AttachmentManager = (
 
       log.success(`Caching image "${file.file.title}"`);
 
-      for (const width of widths) {
+      for await (const width of widths) {
         await attachment(file.slug, width);
       }
     }
