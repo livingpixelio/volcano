@@ -12,7 +12,7 @@ export interface FileEntry {
 }
 
 export const buildFullFileList = (
-  rootDirPath: string
+  rootDirPath: string,
 ): Promise<FileEntry[]> => {
   const ignorePaths = IGNORE_DIR.map((name) => path.join(rootDirPath, name));
 
@@ -57,23 +57,19 @@ export const openFile = (rootDirPath: string, fileEntry: FileEntry) =>
     path.join(
       rootDirPath,
       fileEntry.path,
-      `${fileEntry.basename}${fileEntry.extension}`
-    )
+      `${fileEntry.basename}${fileEntry.extension}`,
+    ),
   );
 
-export const mkdir = async (path: string, removeFirst?: boolean) => {
-  if (removeFirst) {
-    await Deno.remove(path, { recursive: true });
-  }
-
+export const mkdir = (path: string) => {
   // Deno.mkdir throws if the directory already exists, but that's fine in this
   // case, so just catch the error and ignore it
-  return Deno.mkdir(path, { recursive: true }).catch();
+  return Deno.mkdir(path, { recursive: true }).catch(() => null);
 };
 
 export const readFileIfExists = (
   rootDirPath: string,
-  filename: string
+  filename: string,
 ): Promise<Uint8Array | null> => {
   return Deno.readFile(path.join(rootDirPath, filename)).catch(() => null);
 };
@@ -81,7 +77,7 @@ export const readFileIfExists = (
 export const writeBuffer = async (
   rootDirPath: string,
   filename: string,
-  data: Uint8Array<ArrayBuffer>
+  data: Uint8Array<ArrayBuffer>,
 ) => {
   const parts = filename.split("/");
   if (parts.length > 1) {

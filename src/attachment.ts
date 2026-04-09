@@ -38,22 +38,30 @@ export const AttachmentManager = (
       }
       return toBlob(output, file);
     }
-
     return toBlob(original, file);
   };
 
   const cacheAttachments = async (widths: number[]) => {
     if (!attachmentCachePath) throw new Error("NoAttachmentCacheProvided");
-    await mkdir(attachmentCachePath, true);
+    await mkdir(attachmentCachePath);
     const files = await store.listValues<FileMeta>(FILE_TYPE);
 
     for (const file of files) {
       if (file.type !== ATTACHMENT_TYPE) continue;
 
+      const original = await openFile(path, file.file);
+
       log.success(`Caching image "${file.file.title}"`);
 
       for (const width of widths) {
-        await attachment(file.slug, width);
+        const output = await processImage(original, width).catch(() => {
+          throw new Error(`ProcessingError: ${file.slug}`);
+        });
+        await writeBuffer(
+          attachmentCachePath,
+          createCacheFilename(file, width),
+          output,
+        );
       }
     }
   };
