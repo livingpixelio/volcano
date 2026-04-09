@@ -38,7 +38,6 @@ export const AttachmentManager = (
       }
       return toBlob(output, file);
     }
-
     return toBlob(original, file);
   };
 
@@ -50,10 +49,19 @@ export const AttachmentManager = (
     for (const file of files) {
       if (file.type !== ATTACHMENT_TYPE) continue;
 
+      const original = await openFile(path, file.file);
+
       log.success(`Caching image "${file.file.title}"`);
 
-      for await (const width of widths) {
-        await attachment(file.slug, width);
+      for (const width of widths) {
+        const output = await processImage(original, width).catch(() => {
+          throw new Error(`ProcessingError: ${file.slug}`);
+        });
+        await writeBuffer(
+          attachmentCachePath,
+          createCacheFilename(file, width),
+          output,
+        );
       }
     }
   };
